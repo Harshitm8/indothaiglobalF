@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Indo Thai Global</title>
+  <link rel="icon" href="assets/logo.png" type="image/png"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <style>
+    p {
+  text-align: justify;
+}
+    /* ── Page hero ── */ 
+    .page-hero {
+      background: linear-gradient(135deg, #cfeaf6 0%, #eaf7f1 100%);
+      padding: clamp(5rem,9vw,7rem) 0 clamp(3rem,5vw,4rem);
+      position: relative; overflow: hidden;
+    }
+    .page-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 55% at 80% 40%, rgba(47,143,165,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-hero-label {
+      font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #6f8f9a; margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .page-hero-label::before { content: ''; display: block; width: 22px; height: 1px; background:#6f8f9a; opacity: 0.5; }
+    .page-hero-title {
+      font-family: var(--font-serif); font-size: clamp(3rem,6vw,4.8rem);
+      font-weight: 600; color: #243b4a; line-height: 1.08; margin-bottom: 1rem;
+    }
+    .page-hero-title em {
+      color: #243b4a; /* same as Indo Thai */
+  background: none;
+  -webkit-text-fill-color: unset;
+    }
+    .page-hero-sub { font-size: 1.15rem; color: #4f6f7a; max-width: 600px; line-height: 1.75; }
+    
+    /* ── About body ── */
+    .about-body { padding: clamp(4rem,7vw,6rem) 0; background: var(--off-white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-info-list { display: flex; flex-direction: column; gap: 0; }
+    .about-info-row {
+      display: flex; gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .about-info-row:first-child { border-top: 1px solid var(--border); }
+    .about-info-key {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      min-width: 150px;
+      flex-shrink: 0;
+    }
+    .about-info-val {
+      font-size: 0.92rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .about-prose p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--text-mid);
+      margin-bottom: 1.1rem;
+    }
+    .about-prose h3 {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin: 2rem 0 0.6rem;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░ NAVBAR ░░ -->
+<nav class="nav" id="nav">
+  <div class="nav-accent" aria-hidden="true"></div>
+  <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
+      <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
+      <div class="nav-brand-words">
+        <span class="nav-brand-name">Indo Thai Global</span>
+        <span class="nav-brand-tag">Est. 2005 &middot; India</span>
+      </div>
+    </a>
+    <div class="nav-divider" aria-hidden="true"></div>
+    <ul class="nav-links" role="list">
+      <li><a href="home.html"           class="nav-link active">Home</a></li>
+      <li><a href="products.html"       class="nav-link">Products</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="quality.html"        class="nav-link">Quality</a></li>
+      <li><a href="about.html"          class="nav-link">About</a></li>
+      <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
+      <li><a href="contact.html"        class="nav-link">Contact</a></li>
+    </ul>
+    <!-- Language Switcher -->
+    <div class="nav-lang" id="navLang">
+      <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
+        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
+        <span id="langCurrent">English</span>
+        <span class="nav-lang-arrow">▾</span>
+      </button>
+      <div class="nav-lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-search-wrap">
+          <input class="lang-search" id="langSearch" type="text" placeholder="Search language…" autocomplete="off"/>
+        </div>
+        <div class="lang-options-scroll" id="langOptionsScroll"></div>
+      </div>
+    </div>
+    <a href="quote.html" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
+  <ul class="drawer-links" role="list">
+    <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
+    <li><a href="products.html"       class="drawer-link">Products       <span class="drawer-arrow">›</span></a></li>
+    <li><a href="infrastructure.html" class="drawer-link">Infrastructure <span class="drawer-arrow">›</span></a></li>
+    <li><a href="quality.html"        class="drawer-link">Quality        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="about.html"          class="drawer-link">About          <span class="drawer-arrow">›</span></a></li>
+    <li><a href="gallery.html"        class="drawer-link">Gallery        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="contact.html"        class="drawer-link">Contact        <span class="drawer-arrow">›</span></a></li>
+  </ul>
+  <div class="drawer-cta-wrap">
+    <a href="quote.html" class="drawer-cta">Get a Quote →</a>
+  </div>
+</div>
+
+<main class="page-body">
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div class="page-hero-label reveal-up">About Us</div>
+      <h1 class="page-hero-title reveal-up">Indo Thai <em>Global</em></h1>
+      <p class="page-hero-sub reveal-up">
+        Manufacturing innovative solar drying solutions and food processing
+        equipment since 2005 — built for India's agriculture and industry.
+      </p>
+    </div>
+  </section>
+
+  <!-- About Body -->
+  <section class="about-body">
+    <div class="container">
+      <div class="about-grid reveal-left">
+
+        <!-- Company info table -->
+        <div>
+          <div class="section-label">Company Details</div>
+          <div class="about-info-list" style="margin-top:1.2rem">
+            <div class="about-info-row">
+              <span class="about-info-key">Company Name</span>
+              <span class="about-info-val">Indo Thai Global</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Business Type</span>
+              <span class="about-info-val">Manufacturer &amp; Supplier of solar drying systems and agricultural equipment.</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Industry</span>
+              <span class="about-info-val">Renewable Energy &amp; Food Processing Technology</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Established</span>
+              <span class="about-info-val">2005</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Location</span>
+              <span class="about-info-val">Ludhiana, Punjab, India</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Core Products</span>
+              <span class="about-info-val">Solar dryers, vegetable processing machines, food dehydration systems and related equipment.</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Mission</span>
+              <span class="about-info-val">To provide efficient and sustainable drying solutions that improve food preservation and reduce energy consumption.</span>
+            </div>
+            <div class="about-info-row">
+              <span class="about-info-key">Vision</span>
+              <span class="about-info-val">To contribute to modern agriculture through innovative renewable energy technologies.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prose -->
+        <div class="about-prose reveal-right">
+          <div class="section-label">Our Story</div>
+          <h3>Who We Are</h3>
+          <p>
+            Indo Thai Global is focused on delivering reliable solar drying
+            solutions and food processing equipment designed to support
+            modern agriculture and sustainable energy practices across India.
+          </p>
+          <p>
+            Since our founding in 2005, we have built a reputation for
+            manufacturing durable, efficient and easy-to-operate equipment
+            that helps farmers and food processors reduce post-harvest losses
+            and improve productivity.
+          </p>
+          <h3>What Drives Us</h3>
+          <p>
+            We believe that sustainable technology should be accessible to
+            all scales of operation — from small family farms to large
+            commercial food processing facilities.
+          </p>
+          <p>
+            Every product we build reflects our commitment to quality
+            materials, practical engineering and long-term value for
+            our customers.
+          </p>
+          <div style="margin-top:2rem">
+            <a href="contact.html" class="btn btn-dark">Get in Touch →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <h3 class="footer-brand">Indo Thai Global</h3>
+      <p class="footer-text">
+        Innovative solar drying solutions for agriculture and food processing industries.
+        Est. 2005, Ludhiana, India.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="infrastructure.html">Infrastructure</a></li>
+        <li><a href="quality.html">Quality</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Contact</h4>
+      <div class="footer-contact-item">&#128222; +91 88377-10200, +91 76579-44044</div><div class="footer-contact-item">
+  &#9993; <a href="mailto:indothaiglobal20@gmail.com">indothaiglobal20@gmail.com</a>
+</div>
+   <div class="footer-contact-item">&#128205; Ludhiana, Punjab, India</div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="footer-copy">&#169; 2026 Indo Thai Global &#8212; All Rights Reserved</span>
+      <div class="footer-dev-inner">
+        <span class="footer-dev-text">Designed &amp; Developed by </span>
+        <a href="https://www.linkedin.com/in/harshit-malhotra-20b333200/" target="_blank" rel="noopener noreferrer" class="footer-dev-link">Harshit Malhotra</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var COUNTRIES = [
+    // Popular
+    {f:'🇮🇳', n:'India',                  c:'+91',   pop:true},
+    {f:'🇺🇸', n:'United States',           c:'+1',    pop:true},
+    {f:'🇬🇧', n:'United Kingdom',          c:'+44',   pop:true},
+    {f:'🇦🇪', n:'United Arab Emirates',    c:'+971',  pop:true},
+    {f:'🇹🇭', n:'Thailand',                c:'+66',   pop:true},
+    {f:'🇸🇬', n:'Singapore',               c:'+65',   pop:true},
+    {f:'🇦🇺', n:'Australia',               c:'+61',   pop:true},
+    // All
+    {f:'🇦🇫', n:'Afghanistan',             c:'+93'},
+    {f:'🇦🇱', n:'Albania',                 c:'+355'},
+    {f:'🇩🇿', n:'Algeria',                 c:'+213'},
+    {f:'🇦🇩', n:'Andorra',                 c:'+376'},
+    {f:'🇦🇴', n:'Angola',                  c:'+244'},
+    {f:'🇦🇬', n:'Antigua and Barbuda',     c:'+1268'},
+    {f:'🇦🇷', n:'Argentina',               c:'+54'},
+    {f:'🇦🇲', n:'Armenia',                 c:'+374'},
+    {f:'🇦🇹', n:'Austria',                 c:'+43'},
+    {f:'🇦🇿', n:'Azerbaijan',              c:'+994'},
+    {f:'🇧🇸', n:'Bahamas',                 c:'+1242'},
+    {f:'🇧🇭', n:'Bahrain',                 c:'+973'},
+    {f:'🇧🇩', n:'Bangladesh',              c:'+880'},
+    {f:'🇧🇧', n:'Barbados',                c:'+1246'},
+    {f:'🇧🇾', n:'Belarus',                 c:'+375'},
+    {f:'🇧🇪', n:'Belgium',                 c:'+32'},
+    {f:'🇧🇿', n:'Belize',                  c:'+501'},
+    {f:'🇧🇯', n:'Benin',                   c:'+229'},
+    {f:'🇧🇹', n:'Bhutan',                  c:'+975'},
+    {f:'🇧🇴', n:'Bolivia',                 c:'+591'},
+    {f:'🇧🇦', n:'Bosnia and Herzegovina',  c:'+387'},
+    {f:'🇧🇼', n:'Botswana',                c:'+267'},
+    {f:'🇧🇷', n:'Brazil',                  c:'+55'},
+    {f:'🇧🇳', n:'Brunei',                  c:'+673'},
+    {f:'🇧🇬', n:'Bulgaria',                c:'+359'},
+    {f:'🇧🇫', n:'Burkina Faso',            c:'+226'},
+    {f:'🇧🇮', n:'Burundi',                 c:'+257'},
+    {f:'🇨🇻', n:'Cabo Verde',              c:'+238'},
+    {f:'🇰🇭', n:'Cambodia',                c:'+855'},
+    {f:'🇨🇲', n:'Cameroon',                c:'+237'},
+    {f:'🇨🇦', n:'Canada',                  c:'+1'},
+    {f:'🇨🇫', n:'Central African Republic',c:'+236'},
+    {f:'🇹🇩', n:'Chad',                    c:'+235'},
+    {f:'🇨🇱', n:'Chile',                   c:'+56'},
+    {f:'🇨🇳', n:'China',                   c:'+86'},
+    {f:'🇨🇴', n:'Colombia',                c:'+57'},
+    {f:'🇰🇲', n:'Comoros',                 c:'+269'},
+    {f:'🇨🇩', n:'Congo (DRC)',             c:'+243'},
+    {f:'🇨🇬', n:'Congo (Republic)',        c:'+242'},
+    {f:'🇨🇷', n:'Costa Rica',              c:'+506'},
+    {f:'🇭🇷', n:'Croatia',                 c:'+385'},
+    {f:'🇨🇺', n:'Cuba',                    c:'+53'},
+    {f:'🇨🇾', n:'Cyprus',                  c:'+357'},
+    {f:'🇨🇿', n:'Czech Republic',          c:'+420'},
+    {f:'🇩🇰', n:'Denmark',                 c:'+45'},
+    {f:'🇩🇯', n:'Djibouti',                c:'+253'},
+    {f:'🇩🇲', n:'Dominica',                c:'+1767'},
+    {f:'🇩🇴', n:'Dominican Republic',      c:'+1809'},
+    {f:'🇪🇨', n:'Ecuador',                 c:'+593'},
+    {f:'🇪🇬', n:'Egypt',                   c:'+20'},
+    {f:'🇸🇻', n:'El Salvador',             c:'+503'},
+    {f:'🇬🇶', n:'Equatorial Guinea',       c:'+240'},
+    {f:'🇪🇷', n:'Eritrea',                 c:'+291'},
+    {f:'🇪🇪', n:'Estonia',                 c:'+372'},
+    {f:'🇸🇿', n:'Eswatini',                c:'+268'},
+    {f:'🇪🇹', n:'Ethiopia',                c:'+251'},
+    {f:'🇫🇯', n:'Fiji',                    c:'+679'},
+    {f:'🇫🇮', n:'Finland',                 c:'+358'},
+    {f:'🇫🇷', n:'France',                  c:'+33'},
+    {f:'🇬🇦', n:'Gabon',                   c:'+241'},
+    {f:'🇬🇲', n:'Gambia',                  c:'+220'},
+    {f:'🇬🇪', n:'Georgia',                 c:'+995'},
+    {f:'🇩🇪', n:'Germany',                 c:'+49'},
+    {f:'🇬🇭', n:'Ghana',                   c:'+233'},
+    {f:'🇬🇷', n:'Greece',                  c:'+30'},
+    {f:'🇬🇩', n:'Grenada',                 c:'+1473'},
+    {f:'🇬🇹', n:'Guatemala',               c:'+502'},
+    {f:'🇬🇳', n:'Guinea',                  c:'+224'},
+    {f:'🇬🇼', n:'Guinea-Bissau',           c:'+245'},
+    {f:'🇬🇾', n:'Guyana',                  c:'+592'},
+    {f:'🇭🇹', n:'Haiti',                   c:'+509'},
+    {f:'🇭🇳', n:'Honduras',                c:'+504'},
+    {f:'🇭🇺', n:'Hungary',                 c:'+36'},
+    {f:'🇮🇸', n:'Iceland',                 c:'+354'},
+    {f:'🇮🇩', n:'Indonesia',               c:'+62'},
+    {f:'🇮🇷', n:'Iran',                    c:'+98'},
+    {f:'🇮🇶', n:'Iraq',                    c:'+964'},
+    {f:'🇮🇪', n:'Ireland',                 c:'+353'},
+    {f:'🇮🇱', n:'Israel',                  c:'+972'},
+    {f:'🇮🇹', n:'Italy',                   c:'+39'},
+    {f:'🇯🇲', n:'Jamaica',                 c:'+1876'},
+    {f:'🇯🇵', n:'Japan',                   c:'+81'},
+    {f:'🇯🇴', n:'Jordan',                  c:'+962'},
+    {f:'🇰🇿', n:'Kazakhstan',              c:'+7'},
+    {f:'🇰🇪', n:'Kenya',                   c:'+254'},
+    {f:'🇰🇮', n:'Kiribati',                c:'+686'},
+    {f:'🇽🇰', n:'Kosovo',                  c:'+383'},
+    {f:'🇰🇼', n:'Kuwait',                  c:'+965'},
+    {f:'🇰🇬', n:'Kyrgyzstan',              c:'+996'},
+    {f:'🇱🇦', n:'Laos',                    c:'+856'},
+    {f:'🇱🇻', n:'Latvia',                  c:'+371'},
+    {f:'🇱🇧', n:'Lebanon',                 c:'+961'},
+    {f:'🇱🇸', n:'Lesotho',                 c:'+266'},
+    {f:'🇱🇷', n:'Liberia',                 c:'+231'},
+    {f:'🇱🇾', n:'Libya',                   c:'+218'},
+    {f:'🇱🇮', n:'Liechtenstein',           c:'+423'},
+    {f:'🇱🇹', n:'Lithuania',               c:'+370'},
+    {f:'🇱🇺', n:'Luxembourg',              c:'+352'},
+    {f:'🇲🇬', n:'Madagascar',              c:'+261'},
+    {f:'🇲🇼', n:'Malawi',                  c:'+265'},
+    {f:'🇲🇾', n:'Malaysia',                c:'+60'},
+    {f:'🇲🇻', n:'Maldives',                c:'+960'},
+    {f:'🇲🇱', n:'Mali',                    c:'+223'},
+    {f:'🇲🇹', n:'Malta',                   c:'+356'},
+    {f:'🇲🇭', n:'Marshall Islands',        c:'+692'},
+    {f:'🇲🇷', n:'Mauritania',              c:'+222'},
+    {f:'🇲🇺', n:'Mauritius',               c:'+230'},
+    {f:'🇲🇽', n:'Mexico',                  c:'+52'},
+    {f:'🇫🇲', n:'Micronesia',              c:'+691'},
+    {f:'🇲🇩', n:'Moldova',                 c:'+373'},
+    {f:'🇲🇨', n:'Monaco',                  c:'+377'},
+    {f:'🇲🇳', n:'Mongolia',                c:'+976'},
+    {f:'🇲🇪', n:'Montenegro',              c:'+382'},
+    {f:'🇲🇦', n:'Morocco',                 c:'+212'},
+    {f:'🇲🇿', n:'Mozambique',              c:'+258'},
+    {f:'🇲🇲', n:'Myanmar',                 c:'+95'},
+    {f:'🇳🇦', n:'Namibia',                 c:'+264'},
+    {f:'🇳🇷', n:'Nauru',                   c:'+674'},
+    {f:'🇳🇵', n:'Nepal',                   c:'+977'},
+    {f:'🇳🇱', n:'Netherlands',             c:'+31'},
+    {f:'🇳🇿', n:'New Zealand',             c:'+64'},
+    {f:'🇳🇮', n:'Nicaragua',               c:'+505'},
+    {f:'🇳🇪', n:'Niger',                   c:'+227'},
+    {f:'🇳🇬', n:'Nigeria',                 c:'+234'},
+    {f:'🇲🇰', n:'North Macedonia',         c:'+389'},
+    {f:'🇳🇴', n:'Norway',                  c:'+47'},
+    {f:'🇴🇲', n:'Oman',                    c:'+968'},
+    {f:'🇵🇰', n:'Pakistan',                c:'+92'},
+    {f:'🇵🇼', n:'Palau',                   c:'+680'},
+    {f:'🇵🇸', n:'Palestine',               c:'+970'},
+    {f:'🇵🇦', n:'Panama',                  c:'+507'},
+    {f:'🇵🇬', n:'Papua New Guinea',        c:'+675'},
+    {f:'🇵🇾', n:'Paraguay',                c:'+595'},
+    {f:'🇵🇪', n:'Peru',                    c:'+51'},
+    {f:'🇵🇭', n:'Philippines',             c:'+63'},
+    {f:'🇵🇱', n:'Poland',                  c:'+48'},
+    {f:'🇵🇹', n:'Portugal',                c:'+351'},
+    {f:'🇶🇦', n:'Qatar',                   c:'+974'},
+    {f:'🇷🇴', n:'Romania',                 c:'+40'},
+    {f:'🇷🇺', n:'Russia',                  c:'+7'},
+    {f:'🇷🇼', n:'Rwanda',                  c:'+250'},
+    {f:'🇰🇳', n:'Saint Kitts and Nevis',   c:'+1869'},
+    {f:'🇱🇨', n:'Saint Lucia',             c:'+1758'},
+    {f:'🇻🇨', n:'Saint Vincent',           c:'+1784'},
+    {f:'🇼🇸', n:'Samoa',                   c:'+685'},
+    {f:'🇸🇲', n:'San Marino',              c:'+378'},
+    {f:'🇸🇹', n:'Sao Tome and Principe',   c:'+239'},
+    {f:'🇸🇦', n:'Saudi Arabia',            c:'+966'},
+    {f:'🇸🇳', n:'Senegal',                 c:'+221'},
+    {f:'🇷🇸', n:'Serbia',                  c:'+381'},
+    {f:'🇸🇨', n:'Seychelles',              c:'+248'},
+    {f:'🇸🇱', n:'Sierra Leone',            c:'+232'},
+    {f:'🇸🇰', n:'Slovakia',                c:'+421'},
+    {f:'🇸🇮', n:'Slovenia',                c:'+386'},
+    {f:'🇸🇧', n:'Solomon Islands',         c:'+677'},
+    {f:'🇸🇴', n:'Somalia',                 c:'+252'},
+    {f:'🇿🇦', n:'South Africa',            c:'+27'},
+    {f:'🇸🇸', n:'South Sudan',             c:'+211'},
+    {f:'🇪🇸', n:'Spain',                   c:'+34'},
+    {f:'🇱🇰', n:'Sri Lanka',               c:'+94'},
+    {f:'🇸🇩', n:'Sudan',                   c:'+249'},
+    {f:'🇸🇷', n:'Suriname',                c:'+597'},
+    {f:'🇸🇪', n:'Sweden',                  c:'+46'},
+    {f:'🇨🇭', n:'Switzerland',             c:'+41'},
+    {f:'🇸🇾', n:'Syria',                   c:'+963'},
+    {f:'🇹🇼', n:'Taiwan',                  c:'+886'},
+    {f:'🇹🇯', n:'Tajikistan',              c:'+992'},
+    {f:'🇹🇿', n:'Tanzania',                c:'+255'},
+    {f:'🇹🇱', n:'Timor-Leste',             c:'+670'},
+    {f:'🇹🇬', n:'Togo',                    c:'+228'},
+    {f:'🇹🇴', n:'Tonga',                   c:'+676'},
+    {f:'🇹🇹', n:'Trinidad and Tobago',     c:'+1868'},
+    {f:'🇹🇳', n:'Tunisia',                 c:'+216'},
+    {f:'🇹🇷', n:'Turkey',                  c:'+90'},
+    {f:'🇹🇲', n:'Turkmenistan',            c:'+993'},
+    {f:'🇹🇻', n:'Tuvalu',                  c:'+688'},
+    {f:'🇺🇬', n:'Uganda',                  c:'+256'},
+    {f:'🇺🇦', n:'Ukraine',                 c:'+380'},
+    {f:'🇺🇾', n:'Uruguay',                 c:'+598'},
+    {f:'🇺🇿', n:'Uzbekistan',              c:'+998'},
+    {f:'🇻🇺', n:'Vanuatu',                 c:'+678'},
+    {f:'🇻🇦', n:'Vatican City',            c:'+379'},
+    {f:'🇻🇪', n:'Venezuela',               c:'+58'},
+    {f:'🇻🇳', n:'Vietnam',                 c:'+84'},
+    {f:'🇾🇪', n:'Yemen',                   c:'+967'},
+    {f:'🇿🇲', n:'Zambia',                  c:'+260'},
+    {f:'🇿🇼', n:'Zimbabwe',                c:'+263'}
+  ];
+
+  var picker   = document.getElementById('countryPicker');
+  var cpBtn    = document.getElementById('cpBtn');
+  var cpFlag   = document.getElementById('cpFlag');
+  var cpCode   = document.getElementById('cpCode');
+  var cpSearch = document.getElementById('cpSearch');
+  var cpList   = document.getElementById('cpList');
+  var hidden   = document.getElementById('eq-country-val');
+  if (!picker || !cpBtn || !cpList) return;
+
+  /* Build list */
+  function buildList() {
+    cpList.innerHTML = '';
+
+    var popLabel = document.createElement('div');
+    popLabel.className = 'cp-group-label';
+    popLabel.textContent = '⭐ Popular';
+    cpList.appendChild(popLabel);
+
+    COUNTRIES.forEach(function(ct, idx) {
+      if (ct.pop) cpList.appendChild(makeItem(ct, idx));
+    });
+
+    var allLabel = document.createElement('div');
+    allLabel.className = 'cp-group-label';
+    allLabel.textContent = '🌍 All Countries';
+    cpList.appendChild(allLabel);
+
+    COUNTRIES.forEach(function(ct, idx) {
+      if (!ct.pop) cpList.appendChild(makeItem(ct, idx));
+    });
+  }
+
+  function makeItem(ct, idx) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cp-item' + (ct.c === '+91' && ct.n === 'India' ? ' active' : '');
+    btn.setAttribute('data-name', ct.n.toLowerCase());
+    btn.setAttribute('data-code', ct.c);
+    btn.innerHTML =
+      '<span class="cp-item-flag">' + ct.f + '</span>' +
+      '<span class="cp-item-name">' + ct.n + '</span>' +
+      '<span class="cp-item-code">' + ct.c + '</span>';
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      select(ct);
+    });
+    return btn;
+  }
+
+  function select(ct) {
+    cpFlag.textContent = ct.f;
+    cpCode.textContent = ct.c;
+    if (hidden) hidden.value = ct.c;
+    cpList.querySelectorAll('.cp-item').forEach(function(el) { el.classList.remove('active'); });
+    cpList.querySelectorAll('.cp-item').forEach(function(el) {
+      if (el.getAttribute('data-name') === ct.n.toLowerCase() && el.getAttribute('data-code') === ct.c) {
+        el.classList.add('active');
+      }
+    });
+    picker.classList.remove('open');
+    cpBtn.setAttribute('aria-expanded', 'false');
+    if (cpSearch) { cpSearch.value = ''; filterList(''); }
+  }
+
+  function filterList(q) {
+    q = q.toLowerCase().trim();
+    var items = cpList.querySelectorAll('.cp-item');
+    var noResults = cpList.querySelector('.cp-no-results');
+    var visible = 0;
+    items.forEach(function(el) {
+      var name = el.getAttribute('data-name') || '';
+      var code = el.getAttribute('data-code') || '';
+      var show = !q || name.indexOf(q) !== -1 || code.indexOf(q) !== -1;
+      el.hidden = !show;
+      if (show) visible++;
+    });
+    /* hide group labels when searching */
+    cpList.querySelectorAll('.cp-group-label').forEach(function(lbl) {
+      lbl.hidden = !!q;
+    });
+    if (!noResults) {
+      noResults = document.createElement('div');
+      noResults.className = 'cp-no-results';
+      noResults.textContent = 'No countries found';
+      cpList.appendChild(noResults);
+    }
+    noResults.hidden = visible > 0;
+  }
+
+  /* Toggle */
+  cpBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = picker.classList.toggle('open');
+    cpBtn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen && cpSearch) setTimeout(function() { cpSearch.focus(); }, 60);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!picker.contains(e.target)) {
+      picker.classList.remove('open');
+      cpBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { picker.classList.remove('open'); cpBtn.setAttribute('aria-expanded','false'); }
+  });
+
+  if (cpSearch) {
+    cpSearch.addEventListener('input', function() { filterList(this.value); });
+  }
+
+  buildList();
+})();
+</script>
+<script src="js/navbar.js"></script>
+<script src="js/home.js"></script>
+
+<!-- ── Floating Social Dock ── -->
+<style>
+  .social-dock {
+    position: fixed;
+    bottom: 28px;
+    right: 22px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Individual link buttons */
+  .social-dock__btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    transition: transform 0.22s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.22s ease,
+                opacity 0.25s ease;
+    /* hidden by default */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .social-dock__btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    flex-shrink: 0;
+  }
+  .social-dock__btn:hover {
+    transform: translateY(-2px) scale(1.10) !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.30);
+  }
+
+  /* Brand colours */
+  .social-dock__btn--wa      { background: #25d366; }
+  .social-dock__btn--ig      { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+  .social-dock__btn--fb      { background: #1877f2; }
+  .social-dock__btn--mail    { background: #2a9abf; }
+
+  /* Toggle (main) button */
+  .social-dock__toggle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a7aaa 0%, #2a9abf 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(42,154,191,0.45);
+    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.25s ease;
+    z-index: 1;
+  }
+  .social-dock__toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 7px 24px rgba(42,154,191,0.55);
+  }
+  .social-dock__toggle svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.2s;
+  }
+  .social-dock__toggle .icon-close {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* Open state */
+  .social-dock.is-open .social-dock__btn {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .social-dock.is-open .social-dock__toggle .icon-share {
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  .social-dock.is-open .social-dock__toggle .icon-close {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  /* Stagger the reveal */
+  .social-dock__btn:nth-child(1) { transition-delay: 0.00s; }
+  .social-dock__btn:nth-child(2) { transition-delay: 0.04s; }
+  .social-dock__btn:nth-child(3) { transition-delay: 0.08s; }
+  .social-dock__btn:nth-child(4) { transition-delay: 0.12s; }
+
+  /* Tooltip labels */
+  .social-dock__btn::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 56px;
+    background: rgba(10,26,30,0.82);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s;
+  }
+  .social-dock__btn:hover::after { opacity: 1; }
+</style>
+
+<div class="social-dock" id="socialDock">
+  <!-- WhatsApp -->
+  <!-- ▼ CHANGE THIS: replace 919876543210 with your full number incl. country code, no + or spaces -->
+  <a class="social-dock__btn social-dock__btn--wa"
+     href="https://wa.me/917657944044?text=Hello%20Indo%20Thai%20Global%2C%20I%20would%20like%20to%20know%20more%20about%20your%20solar%20drying%20systems."
+     target="_blank" rel="noopener" data-label="WhatsApp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <!-- ▼ CHANGE THIS: replace indothaiglobal with your Instagram handle -->
+  <a class="social-dock__btn social-dock__btn--ig"
+     href="https://instagram.com/abc"
+     target="_blank" rel="noopener" data-label="Instagram" aria-label="Follow on Instagram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+
+  <!-- Facebook -->
+  <!-- ▼ CHANGE THIS: replace IndoThaiGlobal with your Facebook page name/ID -->
+  <a class="social-dock__btn social-dock__btn--fb"
+     href="https://facebook.com/abc"
+     target="_blank" rel="noopener" data-label="Facebook" aria-label="Visit on Facebook">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  </a>
+
+  <!-- Email -->
+  <!-- ▼ CHANGE THIS: replace info@indothaiglobal.com with your actual email -->
+  <a class="social-dock__btn social-dock__btn--mail"
+     href="mailto:indothaiglobal20@gmail.com?subject=Product%20Enquiry%20—%20Indo%20Thai%20Global&body=Hello%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20solar%20drying%20systems%20and%20food%20processing%20equipment.%0A%0APlease%20provide%20more%20details.%0A%0AThank%20you."
+     data-label="Email Us" aria-label="Send us an email">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+  </a>
+</div>
+
+</body>
+</html>
