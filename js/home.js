@@ -77,3 +77,32 @@
   
   els.forEach(function (el) { obs.observe(el); });
 }());
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Cards — one-time reveal
+  const revealCards = document.querySelectorAll('.big-prod-card');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealCards.forEach(card => cardObserver.observe(card));
+
+  // reveal-up / reveal-left / reveal-right — reverse on scroll back
+  const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      } else {
+        entry.target.classList.remove('in-view');
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+});

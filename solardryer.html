@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -668,20 +669,64 @@
 </head>
 <body>
 
- <div id="navbar"></div>
-  
-  <script>
-    fetch('navbar.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('navbar').innerHTML = data;
+<nav class="nav" id="nav">
+  <div class="nav-accent" aria-hidden="true"></div>
+  <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
+      <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
+      <div class="nav-brand-words">
+        <span class="nav-brand-name">Indo Thai Global</span>
+        <span class="nav-brand-tag">Est. 2005 &middot; India</span>
+      </div>
+    </a>
+    <div class="nav-divider" aria-hidden="true"></div>
+    <ul class="nav-links" role="list">
+      <li><a href="home.html"           class="nav-link active">Home</a></li>
+      <li><a href="products.html"       class="nav-link active">Products</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="quality.html"        class="nav-link">Quality</a></li>
+      <li><a href="about.html"          class="nav-link">About</a></li>
+      <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
+      <li><a href="contact.html"        class="nav-link">Contact</a></li>
+    </ul>
+    <!-- Language Switcher -->
+    <div class="nav-lang" id="navLang">
+      <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
+        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
+        <span id="langCurrent">English</span>
+        <span class="nav-lang-arrow">▾</span>
+      </button>
+      <div class="nav-lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-search-wrap">
+          <input class="lang-search" id="langSearch" type="text" placeholder="Search language…" autocomplete="off"/>
+        </div>
+        <div class="lang-options-scroll" id="langOptionsScroll"></div>
+      </div>
+    </div>
+    <a href="quote.html" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</nav>
 
-        // 2. Then load navbar.js AFTER HTML is injected
-        var script = document.createElement('script');
-        script.src = 'js/navbar.js';
-        document.body.appendChild(script);
-      });
-  </script>
+<div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
+  <ul class="drawer-links" role="list">
+    <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
+    <li><a href="products.html"       class="drawer-link">Products       <span class="drawer-arrow">›</span></a></li>
+    <li><a href="infrastructure.html" class="drawer-link">Infrastructure <span class="drawer-arrow">›</span></a></li>
+    <li><a href="quality.html"        class="drawer-link">Quality        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="about.html"          class="drawer-link">About          <span class="drawer-arrow">›</span></a></li>
+    <li><a href="gallery.html"        class="drawer-link">Gallery        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="contact.html"        class="drawer-link">Contact        <span class="drawer-arrow">›</span></a></li>
+  </ul>
+  <div class="drawer-cta-wrap">
+    <a href="quote.html" class="drawer-cta">Get a Quote →</a>
+  </div>
+</div>
 
   <!-- ░░ 3D INTERACTIVE HERO ░░ -->
   <section class="hero" aria-label="Solar Dryer Hero">
@@ -1543,15 +1588,6 @@
     </svg>
   </a>
 
-  <!-- Twitter / X -->
-  <a class="social-dock__btn social-dock__btn--tw"
-    href="https://twitter.com/indothaipb"
-    target="_blank" rel="noopener" data-label="Twitter" aria-label="Follow on Twitter">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  </a>
-
   <!-- Email -->
   <!-- ▼ CHANGE THIS: replace info@indothaiglobal.com with your actual email -->
   <a class="social-dock__btn social-dock__btn--mail"
@@ -1623,34 +1659,19 @@
 })();
 </script>
 
-<!-- Scroll Reveal -->
+<!-- Scroll reveal -->
 <script>
 (function(){
-  document.querySelectorAll('[data-reveal]').forEach(function(el){
-    var dir = el.getAttribute('data-reveal');
-    if (dir === 'left')       el.classList.add('reveal-left');
-    else if (dir === 'right') el.classList.add('reveal-right');
-    else                      el.classList.add('reveal-up');
-  });
-
+  var els = document.querySelectorAll('.sd-mc, .sd-feat, .sd-dry-cat, .sd-compare');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting) {
-          e.target.classList.add('in-view');
-        } else {
-          e.target.classList.remove('in-view'); // reverse on scroll up
-        }
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-    document.querySelectorAll('[data-reveal]').forEach(function(el){
-      obs.observe(el);
-    });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    els.forEach(function(el){ obs.observe(el); });
   } else {
-    document.querySelectorAll('[data-reveal]').forEach(function(el){
-      el.classList.add('in-view');
-    });
+    els.forEach(function(el){ el.classList.add('is-visible'); });
   }
 })();
 </script>
@@ -2036,4 +2057,2064 @@ function handleEnquiry(e) {
 </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solar Dryer — Indo Thai Global</title>
+  <meta name="description" content="Indo Thai Global Solar Dryer — advanced solar and hybrid drying systems, 5 kg to 500 kg. Small, Medium and Large capacity models."/>
+  <link rel="icon" href="assets/logo.png" type="image/png"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
+  <style>
+    /* ══════════════════════════════════
+       PAGE BASE
+    ══════════════════════════════════ */
+    :root {
+      --teal: #3d9ec9;
+      --sky:  #5ac8e8;
+      --blue: #2a7fb5;
+      --ease: cubic-bezier(0.22,1,0.36,1);
+    }
+
+    
+    /* ══════════════════════════════════
+       PRODUCT OVERVIEW SECTION
+    ══════════════════════════════════ */
+    .sd-overview {
+      padding: clamp(4rem, 8vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
+      background: #fff;
+      position: relative;
+    }
+    .sd-overview::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(90,200,232,0.07) 1px, transparent 1px);
+      background-size: 32px 32px; pointer-events: none; opacity: 0.5;
+    }
+    .sd-ov-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      position: relative; z-index: 1;
+    }
+    .sd-ov-img {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(20,60,100,0.12);
+      aspect-ratio: 4/3; background: #d8f2e8;
+    }
+    .sd-ov-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sd-ov-img-ph { width: 100%; height: 100%; min-height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; font-size: 4rem; background: linear-gradient(135deg,#cef2ff,#d8f5e8); color: rgba(10,70,110,0.2); }
+    .sd-ov-img-ph span { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(10,70,110,0.3); font-family: var(--font-mono, monospace); }
+
+    .sd-eyebrow {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-mono, monospace); font-size: 0.58rem;
+      letter-spacing: 0.24em; text-transform: uppercase; color: var(--teal);
+      margin-bottom: 0.9rem;
+    }
+    .sd-eyebrow::before, .sd-eyebrow::after { content: ''; display: block; width: 20px; height: 1px; background: var(--teal); opacity: 0.5; }
+
+    .sd-title {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700; color: var(--text-dark, #1a1a1a);
+      line-height: 1.1; margin-bottom: 0.5rem;
+    }
+    .sd-title em {
+      font-style: italic;
+      background: linear-gradient(108deg, var(--teal) 0%, var(--sky) 50%, var(--blue) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .sd-subtitle {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.88rem; font-weight: 300; font-style: italic;
+      color: var(--text-mid, #6b7280); margin-bottom: 1.1rem; line-height: 1.6;
+    }
+    .sd-rule { width: 34px; height: 2px; background: linear-gradient(90deg, var(--teal), var(--sky)); border-radius: 2px; margin-bottom: 1.1rem; }
+    .sd-desc {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--text-mid, #6b7280); line-height: 1.8; margin-bottom: 1.4rem;
+    }
+    .sd-quick-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; margin-bottom: 1.5rem; }
+    .sd-qs {
+      display: flex; align-items: baseline; gap: 0.4rem;
+      font-family: var(--font-sans, sans-serif); font-size: 0.78rem;
+    }
+    .sd-qs::before { content: ''; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+    .sd-qs-k { font-weight: 600; color: var(--text-dark, #1a1a1a); white-space: nowrap; }
+    .sd-qs-v { color: var(--text-mid, #6b7280); }
+
+    .sd-ov-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+    /* ══════════════════════════════════
+       THREE SUBTYPES
+    ══════════════════════════════════ */
+    .sd-subtypes {
+      padding: clamp(4rem, 7vw, 6rem) 0;
+      background: #f7fcff;
+      position: relative;
+    }
+    .sd-subtypes::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 80% 20%, rgba(90,200,232,0.06) 0%, transparent 60%),
+                  radial-gradient(ellipse 55% 45% at 15% 80%, rgba(90,200,232,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .sd-sec-header {
+      text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      position: relative; z-index: 1;
+    }
+    .sd-sec-title {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 600; color: var(--text-dark, #1a1a1a);
+      line-height: 1.2; margin-bottom: 0.5rem;
+    }
+    .sd-sec-title em {
+      font-style: italic;
+      background: linear-gradient(108deg, var(--teal) 0%, var(--sky) 50%, var(--blue) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .sd-sec-sub {
+      font-family: var(--font-sans, sans-serif); font-size: 0.9rem;
+      font-weight: 300; color: var(--text-light, #9ca3af);
+      max-width: 440px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Subtype tabs */
+    .sd-type-tabs {
+      display: flex; justify-content: center; gap: 0.6rem;
+      margin-bottom: 2.5rem; flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+    .sd-type-tab {
+      padding: 0.55rem 1.4rem;
+      border-radius: 100px;
+      border: 1.5px solid var(--border, #e5e7eb);
+      background: #fff;
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--text-mid, #6b7280);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sd-type-tab.active, .sd-type-tab:hover {
+      background: linear-gradient(108deg, var(--teal), var(--sky));
+      border-color: transparent; color: #fff;
+      box-shadow: 0 4px 16px rgba(90,200,232,0.3);
+    }
+
+    /* Type panel */
+    .sd-type-panel { display: none; position: relative; z-index: 1; }
+    .sd-type-panel.active { display: block; }
+
+    /* Type hero row */
+    .sd-type-hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: start;
+      margin-bottom: 2.5rem;
+    }
+    .sd-type-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 0.22rem 0.75rem;
+      background: rgba(90,200,232,0.1); border: 1px solid rgba(90,200,232,0.28);
+      border-radius: 100px;
+      font-family: var(--font-mono, monospace); font-size: 0.5rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal);
+      margin-bottom: 0.8rem; width: fit-content;
+    }
+    .sd-type-name {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700; color: var(--text-dark, #1a1a1a);
+      line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .sd-type-tagline {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.83rem; font-weight: 300; font-style: italic;
+      color: var(--text-mid, #6b7280); margin-bottom: 0.9rem; line-height: 1.6;
+    }
+    .sd-type-desc {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.85rem; font-weight: 300;
+      color: var(--text-mid, #6b7280); line-height: 1.8;
+    }
+    .sd-type-usecases {
+      margin-top: 1rem;
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .sd-uc-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 0.28rem 0.75rem;
+      background: rgba(90,200,232,0.08); border: 1px solid rgba(90,200,232,0.2);
+      border-radius: 100px;
+      font-family: var(--font-sans, sans-serif); font-size: 0.72rem;
+      color: var(--teal);
+    }
+
+    /* Model cards grid */
+    .sd-model-cards {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .sd-mc {
+      background: #fff;
+      border: 1px solid rgba(90,200,232,0.18);
+      border-radius: 14px;
+      padding: 1.3rem 1.4rem 1.2rem;
+      box-shadow: 0 2px 12px rgba(20,60,100,0.06);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(20px);
+    }
+    .sd-mc.is-visible {
+      animation: mcReveal 0.55s var(--ease) both;
+    }
+    @keyframes mcReveal { to { opacity: 1; transform: translateY(0); } }
+    .sd-mc:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 28px rgba(20,60,100,0.1);
+      border-color: rgba(90,200,232,0.36);
+    }
+    .sd-mc-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 0.9rem; padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(90,200,232,0.15);
+    }
+    .sd-mc-model {
+      font-family: var(--font-mono, monospace); font-size: 0.7rem;
+      font-weight: 700; color: var(--teal); letter-spacing: 0.08em;
+      background: rgba(90,200,232,0.1); border-radius: 6px; padding: 0.18rem 0.55rem;
+    }
+    .sd-mc-cap {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.3rem; font-weight: 700; color: var(--text-dark, #1a1a1a);
+    }
+    .sd-mc-specs { list-style: none; display: flex; flex-direction: column; gap: 0.38rem; margin-bottom: 0.8rem; }
+    .sd-mc-spec {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--font-sans, sans-serif); font-size: 0.74rem;
+      border-bottom: 1px solid rgba(90,200,232,0.08); padding-bottom: 0.32rem;
+    }
+    .sd-mc-spec:last-child { border-bottom: none; }
+    .sd-mc-spec-k { color: var(--text-mid, #6b7280); }
+    .sd-mc-spec-v { font-weight: 600; color: var(--text-dark, #1a1a1a); text-align: right; }
+    .sd-mc-apps {
+      font-family: var(--font-sans, sans-serif); font-size: 0.7rem;
+      color: var(--text-light, #9ca3af); font-style: italic; line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════
+       WIDE CONTAINER (features → dryable)
+    ══════════════════════════════════ */
+    .sd-wide {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+      width: 100%;
+    }
+
+    /* ══════════════════════════════════
+       TECHNICAL FEATURES
+    ══════════════════════════════════ */
+    .sd-features {
+      padding: clamp(4rem, 7vw, 6rem) 0;
+      background: #fff;
+      position: relative;
+    }
+    .sd-features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.3rem; position: relative; z-index: 1;
+    }
+    .sd-feat {
+      background: #f5faff; border: 1px solid rgba(90,200,232,0.14);
+      border-radius: 14px; padding: 1.4rem 1.3rem;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(16px);
+    }
+    .sd-feat.is-visible { animation: mcReveal 0.55s var(--ease) both; }
+    .sd-feat:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(20,60,100,0.08); border-color: rgba(90,200,232,0.3); }
+    .sd-feat-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
+    .sd-feat h4 {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--text-dark, #1a1a1a); margin-bottom: 0.4rem;
+    }
+    .sd-feat p {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text-mid, #6b7280); line-height: 1.65;
+    }
+
+    /* Comparison table */
+    .sd-compare {
+      margin-top: 3rem; position: relative; z-index: 1;
+      background: #f5faff; border: 1px solid rgba(90,200,232,0.18);
+      border-radius: 16px; overflow: hidden;
+      opacity: 0; transform: translateY(16px);
+    }
+    .sd-compare.is-visible { animation: mcReveal 0.65s var(--ease) both; }
+    .sd-compare h4 {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.1rem; font-weight: 600; color: var(--text-dark, #1a1a1a);
+      padding: 1.2rem 1.5rem 0.8rem; border-bottom: 1px solid rgba(90,200,232,0.15);
+    }
+    .sd-compare table { width: 100%; border-collapse: collapse; }
+    .sd-compare th {
+      font-family: var(--font-mono, monospace); font-size: 0.6rem;
+      letter-spacing: 0.15em; text-transform: uppercase; text-align: left;
+      padding: 0.7rem 1.2rem; background: rgba(90,200,232,0.06);
+      color: var(--teal); border-bottom: 1px solid rgba(90,200,232,0.12);
+    }
+    .sd-compare td {
+      font-family: var(--font-sans, sans-serif); font-size: 0.8rem;
+      padding: 0.7rem 1.2rem; border-bottom: 1px solid rgba(90,200,232,0.07);
+      color: var(--text-mid, #6b7280);
+    }
+    .sd-compare tr:last-child td { border-bottom: none; }
+    .td-good { color: #2e9e66 !important; font-weight: 600; }
+    .td-bad  { color: #d05050 !important; }
+
+    /* ══════════════════════════════════
+       WHAT CAN BE DRIED
+    ══════════════════════════════════ */
+    .sd-dryable {
+      padding: clamp(4rem, 7vw, 6rem) 0;
+      background: linear-gradient(180deg, #f0faff 0%, #f7fcff 100%);
+    }
+    .sd-dryable-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem; position: relative; z-index: 1;
+    }
+    .sd-dry-cat {
+      background: #fff; border: 1px solid rgba(90,200,232,0.15);
+      border-radius: 14px; padding: 1.4rem 1.2rem;
+      text-align: center;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s ease;
+      opacity: 0; transform: translateY(16px);
+    }
+    .sd-dry-cat.is-visible { animation: mcReveal 0.55s var(--ease) both; }
+    .sd-dry-cat:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(20,60,100,0.08); }
+    .sd-dry-icon { font-size: 2.2rem; margin-bottom: 0.6rem; }
+    .sd-dry-cat h4 {
+      font-family: var(--font-sans, sans-serif); font-size: 0.85rem;
+      font-weight: 600; color: var(--text-dark, #1a1a1a); margin-bottom: 0.35rem;
+    }
+    .sd-dry-cat p {
+      font-family: var(--font-sans, sans-serif); font-size: 0.72rem;
+      font-weight: 300; color: var(--text-mid, #6b7280); line-height: 1.55;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════
+       ENQUIRY SECTION
+    ══════════════════════════════════ */
+    .sd-enquiry {
+      padding: clamp(4rem, 8vw, 6.5rem) 0;
+      background: #fff;
+      position: relative;
+    }
+    .sd-enquiry::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(90,200,232,0.06) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none; opacity: 0.6;
+    }
+    .sd-enq-inner {
+      display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: clamp(2.5rem, 5vw, 4.5rem);
+      align-items: start; position: relative; z-index: 1;
+    }
+
+    /* Left info */
+    .sd-enq-title {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700; color: var(--text-dark, #1a1a1a);
+      line-height: 1.2; margin-bottom: 0.7rem;
+    }
+    .sd-enq-title em {
+      font-style: italic;
+      background: linear-gradient(108deg, var(--teal) 0%, var(--sky) 50%, var(--blue) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .sd-enq-desc {
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.87rem; font-weight: 300;
+      color: var(--text-mid, #6b7280); line-height: 1.8; margin-bottom: 1.5rem;
+    }
+    .sd-enq-contacts { display: flex; flex-direction: column; gap: 0.65rem; }
+    .sd-enq-contact {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-family: var(--font-sans, sans-serif);
+      font-size: 0.83rem; color: var(--text-mid, #6b7280);
+    }
+    .sd-enq-contact a { color: var(--teal); text-decoration: none; }
+    .sd-enq-contact a:hover { text-decoration: underline; }
+    .sd-ec-icon {
+      width: 34px; height: 34px;
+      background: rgba(90,200,232,0.1); border: 1px solid rgba(90,200,232,0.25);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; flex-shrink: 0;
+    }
+
+    /* Form */
+    .sd-form {
+      background: #f7fcff; border: 1px solid rgba(90,200,232,0.2);
+      border-radius: 18px; padding: clamp(1.8rem, 3vw, 2.4rem);
+      box-shadow: 0 4px 24px rgba(20,60,100,0.06);
+    }
+    .sd-form-title {
+      font-family: var(--font-serif, Georgia, serif);
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--text-dark, #1a1a1a); margin-bottom: 1.3rem;
+    }
+    .sd-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .sd-field { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.9rem; }
+    .sd-label {
+      font-family: var(--font-sans, sans-serif); font-size: 0.72rem;
+      font-weight: 600; color: var(--text-dark, #1a1a1a); letter-spacing: 0.04em;
+    }
+    .sd-label span { color: var(--teal); }
+    .sd-input, .sd-select, .sd-textarea {
+      width: 100%; padding: 0.65rem 0.9rem;
+      background: #fff; border: 1px solid rgba(90,200,232,0.25);
+      border-radius: 9px;
+      font-family: var(--font-sans, sans-serif); font-size: 0.82rem;
+      color: var(--text-dark, #1a1a1a);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .sd-input:focus, .sd-select:focus, .sd-textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(90,200,232,0.18);
+    }
+    .sd-textarea { resize: vertical; min-height: 90px; }
+    .sd-submit {
+      width: 100%; padding: 0.78rem 1.5rem;
+      background: linear-gradient(108deg, var(--teal), var(--sky));
+      color: #fff; border: none; border-radius: 100px;
+      font-family: var(--font-sans, sans-serif); font-size: 0.85rem;
+      font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      box-shadow: 0 4px 18px rgba(90,200,232,0.3);
+    }
+    .sd-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(90,200,232,0.42); }
+    .sd-submit:active { transform: translateY(0); }
+    .sd-form-note {
+      font-family: var(--font-sans, sans-serif); font-size: 0.68rem;
+      color: var(--text-light, #9ca3af); text-align: center; margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    /* ── 3D HERO CANVAS ── */
+    .hero { position: relative; overflow: hidden; }
+
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+      z-index: 0;
+    }
+    #heroCanvas:active { cursor: grabbing; }
+
+    .hero-overlay,
+    .hero-glow { z-index: 1; }
+
+    .hero-content {
+      z-index: 2;
+      position: absolute !important;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 0 24px;
+      text-align: center;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .hero-content.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -46%);
+    }
+    .hero-content .hero-btns { pointer-events: all; }
+    .hero-content .hero-pill  { pointer-events: none; }
+
+    .hero-stats { display: none !important; }
+
+    .scroll-hint { z-index: 2; position: relative; }
+
+    /* ── 3D Controls (right side) ── */
+    .dryer-controls {
+      position: absolute;
+      top: 120px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .dc-btn {
+      width: 33px; height: 33px;
+      border-radius: 8px;
+      border: 0.5px solid rgba(61,158,201,0.28);
+      background: rgba(4,14,26,0.72);
+      color: #3d9ec9;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.18s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .dc-btn:hover { background: rgba(61,158,201,0.14); border-color: #3d9ec9; }
+    .dc-btn.on    { background: rgba(61,158,201,0.2);  border-color: #3d9ec9; }
+
+    .text-toggle {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(4,14,26,0.72);
+      border: 0.5px solid rgba(61,158,201,0.28);
+      border-radius: 20px;
+      padding: 5px 12px 5px 8px;
+      cursor: pointer;
+      font-size: 10px;
+      color: rgba(61,158,201,0.8);
+      letter-spacing: 0.07em;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .text-toggle:hover { background: rgba(61,158,201,0.12); border-color: #3d9ec9; color: #3d9ec9; }
+    .text-toggle-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #3d9ec9;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .text-toggle.off .text-toggle-dot { background: rgba(61,158,201,0.3); }
+    .text-toggle.off { color: rgba(61,158,201,0.4); }
+
+    /* ── Arrow rotate controls (bottom-centre) ── */
+    .dryer-arrows {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 34px 34px 34px;
+      grid-template-rows: 34px 34px;
+      gap: 5px;
+    }
+    .da-btn {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      border: 0.5px solid rgba(61,158,201,0.28);
+      background: rgba(4,14,26,0.72);
+      color: #3d9ec9;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      user-select: none;
+    }
+    .da-btn:hover  { background: rgba(61,158,201,0.14); border-color: #3d9ec9; }
+    .da-btn:active { background: rgba(61,158,201,0.28); transform: scale(0.93); }
+    .da-up    { grid-column: 2; grid-row: 1; }
+    .da-left  { grid-column: 1; grid-row: 2; }
+    .da-down  { grid-column: 2; grid-row: 2; }
+    .da-right { grid-column: 3; grid-row: 2; }
+
+    .dryer-hint {
+      position: absolute;
+      bottom: 68px;
+      left: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 10px;
+    }
+    .dh-item {
+      font-size: 9px;
+      color: rgba(255,255,255,0.28);
+      display: flex; align-items: center; gap: 4px;
+      letter-spacing: 0.07em;
+      font-family: inherit;
+    }
+    .dh-key {
+      width: 16px; height: 16px;
+      border: 0.5px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px;
+    }
+
+    /* ══════════════════════════════════
+       MOBILE RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 900px) {
+      .sd-ov-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sd-ov-img { aspect-ratio: 16/9; }
+      .sd-type-hero { grid-template-columns: 1fr; gap: 1.5rem; }
+      .sd-model-cards { grid-template-columns: repeat(2, 1fr); }
+      .sd-features-grid { grid-template-columns: repeat(2, 1fr); }
+      .sd-dryable-grid { grid-template-columns: repeat(2, 1fr); }
+      .sd-compare { overflow-x: auto; }
+      .sd-enq-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .sd-form-row { grid-template-columns: 1fr; }
+      .cta-strip-inner { flex-direction: column; text-align: center; }
+      .cta-strip-btns { justify-content: center; }
+      .dryer-controls { bottom: 70px; right: 12px; }
+      .dryer-arrows { bottom: 70px; }
+      .dc-btn { width: 28px; height: 28px; font-size: 11px; }
+      .da-btn { width: 28px; height: 28px; font-size: 12px; }
+      .dryer-hint { bottom: 52px; }
+    }
+
+    @media (max-width: 600px) {
+      .sd-quick-specs { grid-template-columns: 1fr 1fr; }
+      .sd-ov-actions { flex-direction: column; }
+      .sd-ov-actions .btn { text-align: center; }
+      .sd-type-tabs { gap: 0.4rem; }
+      .sd-type-tab { padding: 0.45rem 1rem; font-size: 0.75rem; }
+      .sd-model-cards { grid-template-columns: 1fr; }
+      .sd-features-grid { grid-template-columns: 1fr; }
+      .sd-dryable-grid { grid-template-columns: 1fr; }
+      .sd-sec-title { font-size: 1.5rem; }
+      .sd-title { font-size: 1.8rem; }
+      .sd-form { padding: 1.4rem; }
+      .sd-form-row { grid-template-columns: 1fr; }
+      .dryer-arrows { display: none; }
+      .dryer-hint { display: none; }
+      .text-toggle { top: 60px; right: 10px; }
+      .dryer-controls { bottom: 60px; right: 10px; gap: 4px; }
+    }
+
+    /* ══════════════════════════════════
+       CTA STRIP & FOOTER
+    ══════════════════════════════════ */
+    .cta-strip { background: var(--off-white, #f9f9f7); border-top: 1px solid var(--border, #e5e7eb); padding: clamp(3rem,6vw,5rem) 0; }
+    .cta-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .cta-strip-label { font-family: var(--font-mono, monospace); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sky); margin-bottom: 0.4rem; }
+    .cta-strip-title { font-family: var(--font-serif, Georgia, serif); font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 600; color: var(--text-dark, #1a1a1a); line-height: 1.2; }
+    .cta-strip-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  </style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-accent" aria-hidden="true"></div>
+  <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
+      <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
+      <div class="nav-brand-words">
+        <span class="nav-brand-name">Indo Thai Global</span>
+        <span class="nav-brand-tag">Est. 2005 &middot; India</span>
+      </div>
+    </a>
+    <div class="nav-divider" aria-hidden="true"></div>
+    <ul class="nav-links" role="list">
+      <li><a href="home.html"           class="nav-link active">Home</a></li>
+      <li><a href="products.html"       class="nav-link active">Products</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="quality.html"        class="nav-link">Quality</a></li>
+      <li><a href="about.html"          class="nav-link">About</a></li>
+      <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
+      <li><a href="contact.html"        class="nav-link">Contact</a></li>
+    </ul>
+    <!-- Language Switcher -->
+    <div class="nav-lang" id="navLang">
+      <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
+        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
+        <span id="langCurrent">English</span>
+        <span class="nav-lang-arrow">▾</span>
+      </button>
+      <div class="nav-lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-search-wrap">
+          <input class="lang-search" id="langSearch" type="text" placeholder="Search language…" autocomplete="off"/>
+        </div>
+        <div class="lang-options-scroll" id="langOptionsScroll"></div>
+      </div>
+    </div>
+    <a href="quote.html" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
+  <ul class="drawer-links" role="list">
+    <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
+    <li><a href="products.html"       class="drawer-link">Products       <span class="drawer-arrow">›</span></a></li>
+    <li><a href="infrastructure.html" class="drawer-link">Infrastructure <span class="drawer-arrow">›</span></a></li>
+    <li><a href="quality.html"        class="drawer-link">Quality        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="about.html"          class="drawer-link">About          <span class="drawer-arrow">›</span></a></li>
+    <li><a href="gallery.html"        class="drawer-link">Gallery        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="contact.html"        class="drawer-link">Contact        <span class="drawer-arrow">›</span></a></li>
+  </ul>
+  <div class="drawer-cta-wrap">
+    <a href="quote.html" class="drawer-cta">Get a Quote →</a>
+  </div>
+</div>
+
+  <!-- ░░ 3D INTERACTIVE HERO ░░ -->
+  <section class="hero" aria-label="Solar Dryer Hero">
+
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-glow"    aria-hidden="true"></div>
+
+    <!-- Text hide/show toggle -->
+    <button class="text-toggle on" id="bTextToggle" title="Hide / show text overlay">
+      <span class="text-toggle-dot"></span>
+      <span id="textToggleLabel">Hide Text</span>
+    </button>
+
+    <!-- Hero content -->
+    <div class="hero-content" id="heroContent">
+      <div class="hero-pill">
+        <span class="pill-dot" aria-hidden="true"></span>
+        Solar · Hybrid · Industrial
+      </div>
+
+      <h1 class="hero-h1">
+        Indo Thai <em>Solar Dryer</em>
+      </h1>
+
+      <p class="hero-p">
+        Advanced solar and hybrid drying systems — 5 kg to 500 kg capacity,
+        built for food, agriculture &amp; pharmaceutical industries.
+      </p>
+    </div>
+
+    <!-- 3D controls (right side) -->
+    <div class="dryer-controls" aria-label="3D model controls">
+      <button class="dc-btn on" id="bAuto"    title="Auto rotate">↻</button>
+      <button class="dc-btn"    id="bXray"    title="See inside (X-ray)">◎</button>
+      <button class="dc-btn"    id="bExplode" title="Explode view">⊞</button>
+      <button class="dc-btn"    id="bReset"   title="Reset view">⌂</button>
+    </div>
+
+    <!-- Arrow rotate controls (bottom-centre) -->
+    <div class="dryer-arrows" aria-label="Rotate model">
+      <button class="da-btn da-up"    id="bUp"    title="Rotate up"   >▲</button>
+      <button class="da-btn da-left"  id="bLeft"  title="Rotate left" >◀</button>
+      <button class="da-btn da-down"  id="bDown"  title="Rotate down" >▼</button>
+      <button class="da-btn da-right" id="bRight" title="Rotate right">▶</button>
+    </div>
+
+    <!-- drag hint -->
+    <div class="dryer-hint" aria-hidden="true">
+      <div class="dh-item"><div class="dh-key">⊙</div>drag</div>
+      <div class="dh-item"><div class="dh-key">↕</div>zoom</div>
+    </div>
+
+    <!-- scroll hint -->
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <div class="scroll-dot"></div>
+    </div>
+
+  </section>
+
+  <!-- ░░ PRODUCT OVERVIEW ░░ -->
+  <section class="sd-overview" id="overview">
+    <div class="container">
+      <div class="sd-ov-inner">
+
+        <div class="sd-ov-img" data-reveal>
+          <img src="assets/products/solar-dryer.png" alt="Solar Dryer by Indo Thai Global"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+          <div class="sd-ov-img-ph" style="display:none">☀️<span>Solar Dryer</span></div>
+        </div>
+
+        <div class="sd-ov-text" data-reveal>
+          <div class="sd-eyebrow">Solar Technology</div>
+          <h2 class="sd-title">Indo Thai <em>Solar Dryer</em></h2>
+          <p class="sd-subtitle">Precision-engineered solar and hybrid drying systems for food, agriculture &amp; pharmaceutical industries.</p>
+          <div class="sd-rule"></div>
+          <p class="sd-desc">
+            Indo Thai Global manufactures advanced solar drying systems that harness solar energy to deliver consistent, hygienic, and energy-efficient drying. Each unit is built with food-grade SS 304/316 stainless steel, digital PID temperature controls, and optional IoT remote monitoring — making them suitable for small farms all the way to large-scale industrial food processing operations.
+          </p>
+          <div class="sd-quick-specs">
+            <div class="sd-qs"><span class="sd-qs-k">Capacity:</span><span class="sd-qs-v">5 – 500 kg</span></div>
+            <div class="sd-qs"><span class="sd-qs-k">Models:</span><span class="sd-qs-v">6 variants</span></div>
+            <div class="sd-qs"><span class="sd-qs-k">Temp Range:</span><span class="sd-qs-v">45°C – 90°C</span></div>
+            <div class="sd-qs"><span class="sd-qs-k">Material:</span><span class="sd-qs-v">SS 304/316</span></div>
+            <div class="sd-qs"><span class="sd-qs-k">Energy:</span><span class="sd-qs-v">Solar + Hybrid</span></div>
+            <div class="sd-qs"><span class="sd-qs-k">Optional:</span><span class="sd-qs-v">IoT + Mobility</span></div>
+          </div>
+          <div class="sd-ov-actions">
+            <a href="quote.html" class="btn btn-dark">Request a Quote →</a>
+            <a href="#subtypes" class="btn btn-ghost">View Models ↓</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ THREE SUBTYPES ░░ -->
+  <section class="sd-subtypes" id="subtypes">
+    <div class="container">
+
+      <div class="sd-sec-header" data-reveal>
+        <div class="sd-eyebrow" style="justify-content:center">Capacity Range</div>
+        <h2 class="sd-sec-title">Choose Your <em>Capacity</em></h2>
+        <p class="sd-sec-sub">Available in three size categories to match your operation — from home farm to industrial scale.</p>
+      </div>
+
+      <div class="sd-type-tabs">
+        <button class="sd-type-tab active" data-target="small">Small (5–25 kg)</button>
+        <button class="sd-type-tab"        data-target="medium">Medium (50–100 kg)</button>
+        <button class="sd-type-tab"        data-target="large">Large (250–500 kg)</button>
+      </div>
+
+      <!-- SMALL CAPACITY -->
+      <div class="sd-type-panel active" id="type-small">
+        <div class="sd-type-hero">
+          <div class="sd-type-intro">
+            <div class="sd-type-badge">Small Capacity · 5–25 kg</div>
+            <div class="sd-type-name">Compact Solar Dryers</div>
+            <div class="sd-type-tagline">Perfect for home farmers, small enterprises and herbal/spice processing startups.</div>
+            <p class="sd-type-desc">
+              Compact and highly portable, the small capacity range is designed for individual farmers, small-scale spice processors, and herbal medicine producers. Fully solar-powered with no fuel costs, these units deliver professional drying quality in a lightweight format with easy mobility wheels available as an add-on.
+            </p>
+            <div class="sd-type-usecases">
+              <span class="sd-uc-pill">🌿 Herbs &amp; Spices</span>
+              <span class="sd-uc-pill">🍋 Fruits &amp; Vegetables</span>
+              <span class="sd-uc-pill">🏡 Home Farmers</span>
+              <span class="sd-uc-pill">🌾 SHG &amp; FPO Units</span>
+            </div>
+          </div>
+          <div class="sd-model-cards">
+            <div class="sd-mc">
+              <div class="sd-mc-head">
+                <span class="sd-mc-model">ITG-SD5</span>
+                <span class="sd-mc-cap">5 kg</span>
+              </div>
+              <ul class="sd-mc-specs">
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Trays</span><span class="sd-mc-spec-v">3</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Solar Panels</span><span class="sd-mc-spec-v">1</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Fans</span><span class="sd-mc-spec-v">1</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Temperature</span><span class="sd-mc-spec-v">45–65°C</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Weight</span><span class="sd-mc-spec-v">25 kg</span></li>
+              </ul>
+              <div class="sd-mc-apps">Herbs, vegetables, fruits, spices</div>
+            </div>
+            <div class="sd-mc">
+              <div class="sd-mc-head">
+                <span class="sd-mc-model">ITG-SD25</span>
+                <span class="sd-mc-cap">25 kg</span>
+              </div>
+              <ul class="sd-mc-specs">
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Energy</span><span class="sd-mc-spec-v">Solar + Electric backup</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Temperature</span><span class="sd-mc-spec-v">45–70°C</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Material</span><span class="sd-mc-spec-v">SS 304</span></li>
+              </ul>
+              <div class="sd-mc-apps">Chilli, ginger, turmeric, fruits</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDIUM CAPACITY -->
+      <div class="sd-type-panel" id="type-medium">
+        <div class="sd-type-hero">
+          <div class="sd-type-intro">
+            <div class="sd-type-badge">Medium Capacity · 50–100 kg</div>
+            <div class="sd-type-name">Commercial Solar Dryers</div>
+            <div class="sd-type-tagline">Ideal for agri-cooperatives, food processing SMEs and mid-scale export-grade drying.</div>
+            <p class="sd-type-desc">
+              The medium capacity range bridges the gap between cottage-scale and industrial operations. With solar + hybrid backup, digital PID temperature control, and stainless steel construction, these units serve agri-cooperatives, spice exporters, and mid-scale food processors who require consistent, traceable drying quality.
+            </p>
+            <div class="sd-type-usecases">
+              <span class="sd-uc-pill">🌶️ Spice Export</span>
+              <span class="sd-uc-pill">🐟 Fish Drying</span>
+              <span class="sd-uc-pill">🏭 Food SMEs</span>
+              <span class="sd-uc-pill">🌾 Agri Cooperatives</span>
+            </div>
+          </div>
+          <div class="sd-model-cards">
+            <div class="sd-mc">
+              <div class="sd-mc-head">
+                <span class="sd-mc-model">ITG-SD50</span>
+                <span class="sd-mc-cap">50 kg</span>
+              </div>
+              <ul class="sd-mc-specs">
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Trays</span><span class="sd-mc-spec-v">10</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Solar Panels</span><span class="sd-mc-spec-v">2</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Fans</span><span class="sd-mc-spec-v">2–3</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Temperature</span><span class="sd-mc-spec-v">45–70°C</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Weight</span><span class="sd-mc-spec-v">120 kg</span></li>
+              </ul>
+              <div class="sd-mc-apps">Spices, vegetables, fish</div>
+            </div>
+            <div class="sd-mc">
+              <div class="sd-mc-head">
+                <span class="sd-mc-model">ITG-SD100</span>
+                <span class="sd-mc-cap">100 kg</span>
+              </div>
+              <ul class="sd-mc-specs">
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Trays</span><span class="sd-mc-spec-v">20</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Solar Panels</span><span class="sd-mc-spec-v">3–4</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Fans</span><span class="sd-mc-spec-v">4</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Temperature</span><span class="sd-mc-spec-v">50–75°C</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Weight</span><span class="sd-mc-spec-v">250 kg</span></li>
+              </ul>
+              <div class="sd-mc-apps">Fruits, herbs, commercial drying</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LARGE CAPACITY -->
+      <div class="sd-type-panel" id="type-large">
+        <div class="sd-type-hero">
+          <div class="sd-type-intro">
+            <div class="sd-type-badge">Large Capacity · 250–500 kg</div>
+            <div class="sd-type-name">Industrial Solar Dryers</div>
+            <div class="sd-type-tagline">Built for large farms, industrial food processing plants and fish drying operations at scale.</div>
+            <p class="sd-type-desc">
+              Heavy-duty stainless steel frames, hybrid heating systems, multiple solar panels and advanced airflow control define the large-capacity range. These units are engineered for continuous, industrial-scale drying with full IoT monitoring capability, ensuring remote management and data-driven quality control for large farms and food processing enterprises.
+            </p>
+            <div class="sd-type-usecases">
+              <span class="sd-uc-pill">🏭 Industrial Processing</span>
+              <span class="sd-uc-pill">🐟 Large Fish Units</span>
+              <span class="sd-uc-pill">🌾 Big Farms</span>
+              <span class="sd-uc-pill">📡 IoT Monitoring</span>
+            </div>
+          </div>
+          <div class="sd-model-cards">
+            <div class="sd-mc">
+              <div class="sd-mc-head">
+                <span class="sd-mc-model">ITG-SD250</span>
+                <span class="sd-mc-cap">250 kg</span>
+              </div>
+              <ul class="sd-mc-specs">
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Trays</span><span class="sd-mc-spec-v">40</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Solar Panels</span><span class="sd-mc-spec-v">6</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Fans</span><span class="sd-mc-spec-v">6</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Type</span><span class="sd-mc-spec-v">Hybrid heating</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Temperature</span><span class="sd-mc-spec-v">50–80°C</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Weight</span><span class="sd-mc-spec-v">500 kg</span></li>
+              </ul>
+              <div class="sd-mc-apps">Large farms and food processing</div>
+            </div>
+            <div class="sd-mc">
+              <div class="sd-mc-head">
+                <span class="sd-mc-model">ITG-SD500</span>
+                <span class="sd-mc-cap">500 kg</span>
+              </div>
+              <ul class="sd-mc-specs">
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Trays</span><span class="sd-mc-spec-v">80</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Solar Panels</span><span class="sd-mc-spec-v">10+</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Fans</span><span class="sd-mc-spec-v">10</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Type</span><span class="sd-mc-spec-v">Hybrid heating</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Temperature</span><span class="sd-mc-spec-v">50–90°C</span></li>
+                <li class="sd-mc-spec"><span class="sd-mc-spec-k">Weight</span><span class="sd-mc-spec-v">900 kg</span></li>
+              </ul>
+              <div class="sd-mc-apps">Industrial food processing, fish drying</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ░░ TECHNICAL FEATURES ░░ -->
+  <section class="sd-features" id="features">
+    <div class="sd-wide">
+      <div class="sd-sec-header" data-reveal>
+        <div class="sd-eyebrow" style="justify-content:center">Built Different</div>
+        <h2 class="sd-sec-title">Technical <em>Features</em></h2>
+        <p class="sd-sec-sub">Every detail in the Solar Dryer is engineered for performance, hygiene and long-term reliability.</p>
+      </div>
+
+      <div class="sd-features-grid">
+        <div class="sd-feat"><div class="sd-feat-icon">⚡</div><h4>Solar Panels</h4><p>High-efficiency PV panels power fans and digital controls with near-zero fuel cost in sunlight conditions.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">💨</div><h4>Solar Fans</h4><p>Uniform airflow throughout the drying chamber ensures consistent, faster drying across all trays.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">🏭</div><h4>SS Drying Chamber</h4><p>Food-grade stainless steel chamber with insulation maintains precise temperature zones throughout drying.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">🔲</div><h4>Stainless Trays</h4><p>SS mesh trays for hygienic drying — fully removable and easy to clean between product batches.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">🌡️</div><h4>Digital PID Control</h4><p>Precise digital PID controller with humidity sensors for accurate, repeatable drying conditions.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">🔄</div><h4>Auto Airflow Control</h4><p>Automatic airflow management with optional IoT monitoring for remote operation and data logging.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">🔩</div><h4>Heavy-Duty Frame</h4><p>Robust stainless steel structure with optional mobility wheels for flexible placement anywhere on-site.</p></div>
+        <div class="sd-feat"><div class="sd-feat-icon">☀️</div><h4>Hybrid Backup</h4><p>Electric and biomass backup heating ensures continuous drying operations even on overcast days.</p></div>
+      </div>
+
+      <div class="sd-compare" id="sdCompare">
+        <h4>Traditional Drying vs Solar Dryer</h4>
+        <table>
+          <thead>
+            <tr><th>Feature</th><th>Traditional</th><th>Solar Dryer</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Hygiene</td><td class="td-bad">Low</td><td class="td-good">High ✓</td></tr>
+            <tr><td>Drying Speed</td><td class="td-bad">Slow</td><td class="td-good">Fast ✓</td></tr>
+            <tr><td>Weather Dependency</td><td class="td-bad">High</td><td class="td-good">Low ✓</td></tr>
+            <tr><td>Product Quality</td><td class="td-bad">Inconsistent</td><td class="td-good">Uniform ✓</td></tr>
+            <tr><td>Operating Cost</td><td class="td-bad">High</td><td class="td-good">Near Zero ✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ WHAT CAN BE DRIED ░░ -->
+  <section class="sd-dryable" id="dryable">
+    <div class="sd-wide">
+      <div class="sd-sec-header" data-reveal>
+        <div class="sd-eyebrow" style="justify-content:center">Applications</div>
+        <h2 class="sd-sec-title">What Can Be <em>Dried</em></h2>
+        <p class="sd-sec-sub">Versatile across produce types — from delicate medicinal herbs to robust agricultural crops.</p>
+      </div>
+      <div class="sd-dryable-grid">
+        <div class="sd-dry-cat"><div class="sd-dry-icon">🍋</div><h4>Fruits</h4><p>Mango · Banana · Pineapple · Apple · Papaya</p></div>
+        <div class="sd-dry-cat"><div class="sd-dry-icon">🥕</div><h4>Vegetables</h4><p>Onion · Tomato · Carrot · Garlic · Beetroot</p></div>
+        <div class="sd-dry-cat"><div class="sd-dry-icon">🌶️</div><h4>Spices</h4><p>Turmeric · Ginger · Chilli · Pepper · Coriander</p></div>
+        <div class="sd-dry-cat"><div class="sd-dry-icon">🌿</div><h4>Herbs &amp; Medicinal</h4><p>Neem · Tulsi · Mint · Aloe Vera · Ashwagandha</p></div>
+        <div class="sd-dry-cat"><div class="sd-dry-icon">🐟</div><h4>Fish &amp; Meat</h4><p>Fish · Shrimp · Meat — hygienic protected drying</p></div>
+        <div class="sd-dry-cat"><div class="sd-dry-icon">🌾</div><h4>Grains &amp; Others</h4><p>Seeds · Pulses · Cereals · Organic produce</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ░░ CTA STRIP ░░ -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="cta-strip-inner">
+        <div>
+          <p class="cta-strip-label">Ready to get started?</p>
+          <h2 class="cta-strip-title">Let's find the right product for you</h2>
+        </div>
+        <div class="cta-strip-btns">
+          <a href="quote.html"    class="btn btn-dark">Request a Quote →</a>
+          <a href="products.html" class="btn btn-ghost">← All Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ░░ FOOTER ░░ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <h3 class="footer-brand">Indo Thai Global</h3>
+      <p class="footer-text">
+        Innovative solar drying solutions for agriculture and food processing industries.
+        Est. 2005, Ludhiana, India.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Quick Links</h4>
+      <ul class="footer-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="infrastructure.html">Infrastructure</a></li>
+        <li><a href="quality.html">Quality</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Contact</h4>
+      <div class="footer-contact-item">&#128222; +91 88377-10200, +91 76579-44044</div><div class="footer-contact-item">
+  &#9993; <a href="mailto:indothaiglobal20@gmail.com">indothaiglobal20@gmail.com</a>
+</div>
+   <div class="footer-contact-item">&#128205; Ludhiana, Punjab, India</div>
+    </div>
+
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <span class="footer-copy">&#169; 2026 Indo Thai Global &#8212; All Rights Reserved</span>
+      <div class="footer-dev-inner">
+        <span class="footer-dev-text">Designed &amp; Developed by </span>
+        <a href="https://www.linkedin.com/in/harshit-malhotra-20b333200/" target="_blank" rel="noopener noreferrer" class="footer-dev-link">Harshit Malhotra</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var COUNTRIES = [
+    // Popular
+    {f:'🇮🇳', n:'India',                  c:'+91',   pop:true},
+    {f:'🇺🇸', n:'United States',           c:'+1',    pop:true},
+    {f:'🇬🇧', n:'United Kingdom',          c:'+44',   pop:true},
+    {f:'🇦🇪', n:'United Arab Emirates',    c:'+971',  pop:true},
+    {f:'🇹🇭', n:'Thailand',                c:'+66',   pop:true},
+    {f:'🇸🇬', n:'Singapore',               c:'+65',   pop:true},
+    {f:'🇦🇺', n:'Australia',               c:'+61',   pop:true},
+    // All
+    {f:'🇦🇫', n:'Afghanistan',             c:'+93'},
+    {f:'🇦🇱', n:'Albania',                 c:'+355'},
+    {f:'🇩🇿', n:'Algeria',                 c:'+213'},
+    {f:'🇦🇩', n:'Andorra',                 c:'+376'},
+    {f:'🇦🇴', n:'Angola',                  c:'+244'},
+    {f:'🇦🇬', n:'Antigua and Barbuda',     c:'+1268'},
+    {f:'🇦🇷', n:'Argentina',               c:'+54'},
+    {f:'🇦🇲', n:'Armenia',                 c:'+374'},
+    {f:'🇦🇹', n:'Austria',                 c:'+43'},
+    {f:'🇦🇿', n:'Azerbaijan',              c:'+994'},
+    {f:'🇧🇸', n:'Bahamas',                 c:'+1242'},
+    {f:'🇧🇭', n:'Bahrain',                 c:'+973'},
+    {f:'🇧🇩', n:'Bangladesh',              c:'+880'},
+    {f:'🇧🇧', n:'Barbados',                c:'+1246'},
+    {f:'🇧🇾', n:'Belarus',                 c:'+375'},
+    {f:'🇧🇪', n:'Belgium',                 c:'+32'},
+    {f:'🇧🇿', n:'Belize',                  c:'+501'},
+    {f:'🇧🇯', n:'Benin',                   c:'+229'},
+    {f:'🇧🇹', n:'Bhutan',                  c:'+975'},
+    {f:'🇧🇴', n:'Bolivia',                 c:'+591'},
+    {f:'🇧🇦', n:'Bosnia and Herzegovina',  c:'+387'},
+    {f:'🇧🇼', n:'Botswana',                c:'+267'},
+    {f:'🇧🇷', n:'Brazil',                  c:'+55'},
+    {f:'🇧🇳', n:'Brunei',                  c:'+673'},
+    {f:'🇧🇬', n:'Bulgaria',                c:'+359'},
+    {f:'🇧🇫', n:'Burkina Faso',            c:'+226'},
+    {f:'🇧🇮', n:'Burundi',                 c:'+257'},
+    {f:'🇨🇻', n:'Cabo Verde',              c:'+238'},
+    {f:'🇰🇭', n:'Cambodia',                c:'+855'},
+    {f:'🇨🇲', n:'Cameroon',                c:'+237'},
+    {f:'🇨🇦', n:'Canada',                  c:'+1'},
+    {f:'🇨🇫', n:'Central African Republic',c:'+236'},
+    {f:'🇹🇩', n:'Chad',                    c:'+235'},
+    {f:'🇨🇱', n:'Chile',                   c:'+56'},
+    {f:'🇨🇳', n:'China',                   c:'+86'},
+    {f:'🇨🇴', n:'Colombia',                c:'+57'},
+    {f:'🇰🇲', n:'Comoros',                 c:'+269'},
+    {f:'🇨🇩', n:'Congo (DRC)',             c:'+243'},
+    {f:'🇨🇬', n:'Congo (Republic)',        c:'+242'},
+    {f:'🇨🇷', n:'Costa Rica',              c:'+506'},
+    {f:'🇭🇷', n:'Croatia',                 c:'+385'},
+    {f:'🇨🇺', n:'Cuba',                    c:'+53'},
+    {f:'🇨🇾', n:'Cyprus',                  c:'+357'},
+    {f:'🇨🇿', n:'Czech Republic',          c:'+420'},
+    {f:'🇩🇰', n:'Denmark',                 c:'+45'},
+    {f:'🇩🇯', n:'Djibouti',                c:'+253'},
+    {f:'🇩🇲', n:'Dominica',                c:'+1767'},
+    {f:'🇩🇴', n:'Dominican Republic',      c:'+1809'},
+    {f:'🇪🇨', n:'Ecuador',                 c:'+593'},
+    {f:'🇪🇬', n:'Egypt',                   c:'+20'},
+    {f:'🇸🇻', n:'El Salvador',             c:'+503'},
+    {f:'🇬🇶', n:'Equatorial Guinea',       c:'+240'},
+    {f:'🇪🇷', n:'Eritrea',                 c:'+291'},
+    {f:'🇪🇪', n:'Estonia',                 c:'+372'},
+    {f:'🇸🇿', n:'Eswatini',                c:'+268'},
+    {f:'🇪🇹', n:'Ethiopia',                c:'+251'},
+    {f:'🇫🇯', n:'Fiji',                    c:'+679'},
+    {f:'🇫🇮', n:'Finland',                 c:'+358'},
+    {f:'🇫🇷', n:'France',                  c:'+33'},
+    {f:'🇬🇦', n:'Gabon',                   c:'+241'},
+    {f:'🇬🇲', n:'Gambia',                  c:'+220'},
+    {f:'🇬🇪', n:'Georgia',                 c:'+995'},
+    {f:'🇩🇪', n:'Germany',                 c:'+49'},
+    {f:'🇬🇭', n:'Ghana',                   c:'+233'},
+    {f:'🇬🇷', n:'Greece',                  c:'+30'},
+    {f:'🇬🇩', n:'Grenada',                 c:'+1473'},
+    {f:'🇬🇹', n:'Guatemala',               c:'+502'},
+    {f:'🇬🇳', n:'Guinea',                  c:'+224'},
+    {f:'🇬🇼', n:'Guinea-Bissau',           c:'+245'},
+    {f:'🇬🇾', n:'Guyana',                  c:'+592'},
+    {f:'🇭🇹', n:'Haiti',                   c:'+509'},
+    {f:'🇭🇳', n:'Honduras',                c:'+504'},
+    {f:'🇭🇺', n:'Hungary',                 c:'+36'},
+    {f:'🇮🇸', n:'Iceland',                 c:'+354'},
+    {f:'🇮🇩', n:'Indonesia',               c:'+62'},
+    {f:'🇮🇷', n:'Iran',                    c:'+98'},
+    {f:'🇮🇶', n:'Iraq',                    c:'+964'},
+    {f:'🇮🇪', n:'Ireland',                 c:'+353'},
+    {f:'🇮🇱', n:'Israel',                  c:'+972'},
+    {f:'🇮🇹', n:'Italy',                   c:'+39'},
+    {f:'🇯🇲', n:'Jamaica',                 c:'+1876'},
+    {f:'🇯🇵', n:'Japan',                   c:'+81'},
+    {f:'🇯🇴', n:'Jordan',                  c:'+962'},
+    {f:'🇰🇿', n:'Kazakhstan',              c:'+7'},
+    {f:'🇰🇪', n:'Kenya',                   c:'+254'},
+    {f:'🇰🇮', n:'Kiribati',                c:'+686'},
+    {f:'🇽🇰', n:'Kosovo',                  c:'+383'},
+    {f:'🇰🇼', n:'Kuwait',                  c:'+965'},
+    {f:'🇰🇬', n:'Kyrgyzstan',              c:'+996'},
+    {f:'🇱🇦', n:'Laos',                    c:'+856'},
+    {f:'🇱🇻', n:'Latvia',                  c:'+371'},
+    {f:'🇱🇧', n:'Lebanon',                 c:'+961'},
+    {f:'🇱🇸', n:'Lesotho',                 c:'+266'},
+    {f:'🇱🇷', n:'Liberia',                 c:'+231'},
+    {f:'🇱🇾', n:'Libya',                   c:'+218'},
+    {f:'🇱🇮', n:'Liechtenstein',           c:'+423'},
+    {f:'🇱🇹', n:'Lithuania',               c:'+370'},
+    {f:'🇱🇺', n:'Luxembourg',              c:'+352'},
+    {f:'🇲🇬', n:'Madagascar',              c:'+261'},
+    {f:'🇲🇼', n:'Malawi',                  c:'+265'},
+    {f:'🇲🇾', n:'Malaysia',                c:'+60'},
+    {f:'🇲🇻', n:'Maldives',                c:'+960'},
+    {f:'🇲🇱', n:'Mali',                    c:'+223'},
+    {f:'🇲🇹', n:'Malta',                   c:'+356'},
+    {f:'🇲🇭', n:'Marshall Islands',        c:'+692'},
+    {f:'🇲🇷', n:'Mauritania',              c:'+222'},
+    {f:'🇲🇺', n:'Mauritius',               c:'+230'},
+    {f:'🇲🇽', n:'Mexico',                  c:'+52'},
+    {f:'🇫🇲', n:'Micronesia',              c:'+691'},
+    {f:'🇲🇩', n:'Moldova',                 c:'+373'},
+    {f:'🇲🇨', n:'Monaco',                  c:'+377'},
+    {f:'🇲🇳', n:'Mongolia',                c:'+976'},
+    {f:'🇲🇪', n:'Montenegro',              c:'+382'},
+    {f:'🇲🇦', n:'Morocco',                 c:'+212'},
+    {f:'🇲🇿', n:'Mozambique',              c:'+258'},
+    {f:'🇲🇲', n:'Myanmar',                 c:'+95'},
+    {f:'🇳🇦', n:'Namibia',                 c:'+264'},
+    {f:'🇳🇷', n:'Nauru',                   c:'+674'},
+    {f:'🇳🇵', n:'Nepal',                   c:'+977'},
+    {f:'🇳🇱', n:'Netherlands',             c:'+31'},
+    {f:'🇳🇿', n:'New Zealand',             c:'+64'},
+    {f:'🇳🇮', n:'Nicaragua',               c:'+505'},
+    {f:'🇳🇪', n:'Niger',                   c:'+227'},
+    {f:'🇳🇬', n:'Nigeria',                 c:'+234'},
+    {f:'🇲🇰', n:'North Macedonia',         c:'+389'},
+    {f:'🇳🇴', n:'Norway',                  c:'+47'},
+    {f:'🇴🇲', n:'Oman',                    c:'+968'},
+    {f:'🇵🇰', n:'Pakistan',                c:'+92'},
+    {f:'🇵🇼', n:'Palau',                   c:'+680'},
+    {f:'🇵🇸', n:'Palestine',               c:'+970'},
+    {f:'🇵🇦', n:'Panama',                  c:'+507'},
+    {f:'🇵🇬', n:'Papua New Guinea',        c:'+675'},
+    {f:'🇵🇾', n:'Paraguay',                c:'+595'},
+    {f:'🇵🇪', n:'Peru',                    c:'+51'},
+    {f:'🇵🇭', n:'Philippines',             c:'+63'},
+    {f:'🇵🇱', n:'Poland',                  c:'+48'},
+    {f:'🇵🇹', n:'Portugal',                c:'+351'},
+    {f:'🇶🇦', n:'Qatar',                   c:'+974'},
+    {f:'🇷🇴', n:'Romania',                 c:'+40'},
+    {f:'🇷🇺', n:'Russia',                  c:'+7'},
+    {f:'🇷🇼', n:'Rwanda',                  c:'+250'},
+    {f:'🇰🇳', n:'Saint Kitts and Nevis',   c:'+1869'},
+    {f:'🇱🇨', n:'Saint Lucia',             c:'+1758'},
+    {f:'🇻🇨', n:'Saint Vincent',           c:'+1784'},
+    {f:'🇼🇸', n:'Samoa',                   c:'+685'},
+    {f:'🇸🇲', n:'San Marino',              c:'+378'},
+    {f:'🇸🇹', n:'Sao Tome and Principe',   c:'+239'},
+    {f:'🇸🇦', n:'Saudi Arabia',            c:'+966'},
+    {f:'🇸🇳', n:'Senegal',                 c:'+221'},
+    {f:'🇷🇸', n:'Serbia',                  c:'+381'},
+    {f:'🇸🇨', n:'Seychelles',              c:'+248'},
+    {f:'🇸🇱', n:'Sierra Leone',            c:'+232'},
+    {f:'🇸🇰', n:'Slovakia',                c:'+421'},
+    {f:'🇸🇮', n:'Slovenia',                c:'+386'},
+    {f:'🇸🇧', n:'Solomon Islands',         c:'+677'},
+    {f:'🇸🇴', n:'Somalia',                 c:'+252'},
+    {f:'🇿🇦', n:'South Africa',            c:'+27'},
+    {f:'🇸🇸', n:'South Sudan',             c:'+211'},
+    {f:'🇪🇸', n:'Spain',                   c:'+34'},
+    {f:'🇱🇰', n:'Sri Lanka',               c:'+94'},
+    {f:'🇸🇩', n:'Sudan',                   c:'+249'},
+    {f:'🇸🇷', n:'Suriname',                c:'+597'},
+    {f:'🇸🇪', n:'Sweden',                  c:'+46'},
+    {f:'🇨🇭', n:'Switzerland',             c:'+41'},
+    {f:'🇸🇾', n:'Syria',                   c:'+963'},
+    {f:'🇹🇼', n:'Taiwan',                  c:'+886'},
+    {f:'🇹🇯', n:'Tajikistan',              c:'+992'},
+    {f:'🇹🇿', n:'Tanzania',                c:'+255'},
+    {f:'🇹🇱', n:'Timor-Leste',             c:'+670'},
+    {f:'🇹🇬', n:'Togo',                    c:'+228'},
+    {f:'🇹🇴', n:'Tonga',                   c:'+676'},
+    {f:'🇹🇹', n:'Trinidad and Tobago',     c:'+1868'},
+    {f:'🇹🇳', n:'Tunisia',                 c:'+216'},
+    {f:'🇹🇷', n:'Turkey',                  c:'+90'},
+    {f:'🇹🇲', n:'Turkmenistan',            c:'+993'},
+    {f:'🇹🇻', n:'Tuvalu',                  c:'+688'},
+    {f:'🇺🇬', n:'Uganda',                  c:'+256'},
+    {f:'🇺🇦', n:'Ukraine',                 c:'+380'},
+    {f:'🇺🇾', n:'Uruguay',                 c:'+598'},
+    {f:'🇺🇿', n:'Uzbekistan',              c:'+998'},
+    {f:'🇻🇺', n:'Vanuatu',                 c:'+678'},
+    {f:'🇻🇦', n:'Vatican City',            c:'+379'},
+    {f:'🇻🇪', n:'Venezuela',               c:'+58'},
+    {f:'🇻🇳', n:'Vietnam',                 c:'+84'},
+    {f:'🇾🇪', n:'Yemen',                   c:'+967'},
+    {f:'🇿🇲', n:'Zambia',                  c:'+260'},
+    {f:'🇿🇼', n:'Zimbabwe',                c:'+263'}
+  ];
+
+  var picker   = document.getElementById('countryPicker');
+  var cpBtn    = document.getElementById('cpBtn');
+  var cpFlag   = document.getElementById('cpFlag');
+  var cpCode   = document.getElementById('cpCode');
+  var cpSearch = document.getElementById('cpSearch');
+  var cpList   = document.getElementById('cpList');
+  var hidden   = document.getElementById('eq-country-val');
+  if (!picker || !cpBtn || !cpList) return;
+
+  /* Build list */
+  function buildList() {
+    cpList.innerHTML = '';
+
+    var popLabel = document.createElement('div');
+    popLabel.className = 'cp-group-label';
+    popLabel.textContent = '⭐ Popular';
+    cpList.appendChild(popLabel);
+
+    COUNTRIES.forEach(function(ct, idx) {
+      if (ct.pop) cpList.appendChild(makeItem(ct, idx));
+    });
+
+    var allLabel = document.createElement('div');
+    allLabel.className = 'cp-group-label';
+    allLabel.textContent = '🌍 All Countries';
+    cpList.appendChild(allLabel);
+
+    COUNTRIES.forEach(function(ct, idx) {
+      if (!ct.pop) cpList.appendChild(makeItem(ct, idx));
+    });
+  }
+
+  function makeItem(ct, idx) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cp-item' + (ct.c === '+91' && ct.n === 'India' ? ' active' : '');
+    btn.setAttribute('data-name', ct.n.toLowerCase());
+    btn.setAttribute('data-code', ct.c);
+    btn.innerHTML =
+      '<span class="cp-item-flag">' + ct.f + '</span>' +
+      '<span class="cp-item-name">' + ct.n + '</span>' +
+      '<span class="cp-item-code">' + ct.c + '</span>';
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      select(ct);
+    });
+    return btn;
+  }
+
+  function select(ct) {
+    cpFlag.textContent = ct.f;
+    cpCode.textContent = ct.c;
+    if (hidden) hidden.value = ct.c;
+    cpList.querySelectorAll('.cp-item').forEach(function(el) { el.classList.remove('active'); });
+    cpList.querySelectorAll('.cp-item').forEach(function(el) {
+      if (el.getAttribute('data-name') === ct.n.toLowerCase() && el.getAttribute('data-code') === ct.c) {
+        el.classList.add('active');
+      }
+    });
+    picker.classList.remove('open');
+    cpBtn.setAttribute('aria-expanded', 'false');
+    if (cpSearch) { cpSearch.value = ''; filterList(''); }
+  }
+
+  function filterList(q) {
+    q = q.toLowerCase().trim();
+    var items = cpList.querySelectorAll('.cp-item');
+    var noResults = cpList.querySelector('.cp-no-results');
+    var visible = 0;
+    items.forEach(function(el) {
+      var name = el.getAttribute('data-name') || '';
+      var code = el.getAttribute('data-code') || '';
+      var show = !q || name.indexOf(q) !== -1 || code.indexOf(q) !== -1;
+      el.hidden = !show;
+      if (show) visible++;
+    });
+    /* hide group labels when searching */
+    cpList.querySelectorAll('.cp-group-label').forEach(function(lbl) {
+      lbl.hidden = !!q;
+    });
+    if (!noResults) {
+      noResults = document.createElement('div');
+      noResults.className = 'cp-no-results';
+      noResults.textContent = 'No countries found';
+      cpList.appendChild(noResults);
+    }
+    noResults.hidden = visible > 0;
+  }
+
+  /* Toggle */
+  cpBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = picker.classList.toggle('open');
+    cpBtn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen && cpSearch) setTimeout(function() { cpSearch.focus(); }, 60);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!picker.contains(e.target)) {
+      picker.classList.remove('open');
+      cpBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { picker.classList.remove('open'); cpBtn.setAttribute('aria-expanded','false'); }
+  });
+
+  if (cpSearch) {
+    cpSearch.addEventListener('input', function() { filterList(this.value); });
+  }
+
+  buildList();
+})();
+</script>
+<script src="js/navbar.js"></script>
+<script src="js/home.js"></script>
+
+<!-- ── Floating Social Dock ── -->
+<style>
+  .social-dock {
+    position: fixed;
+    bottom: 28px;
+    right: 22px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Individual link buttons */
+  .social-dock__btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    transition: transform 0.22s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.22s ease,
+                opacity 0.25s ease;
+    /* hidden by default */
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .social-dock__btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    flex-shrink: 0;
+  }
+  .social-dock__btn:hover {
+    transform: translateY(-2px) scale(1.10) !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.30);
+  }
+
+  /* Brand colours */
+  .social-dock__btn--wa      { background: #25d366; }
+  .social-dock__btn--ig      { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+  .social-dock__btn--fb      { background: #1877f2; }
+  .social-dock__btn--mail    { background: #2a9abf; }
+
+  /* Toggle (main) button */
+  .social-dock__toggle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a7aaa 0%, #2a9abf 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(42,154,191,0.45);
+    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.25s ease;
+    z-index: 1;
+  }
+  .social-dock__toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 7px 24px rgba(42,154,191,0.55);
+  }
+  .social-dock__toggle svg {
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), opacity 0.2s;
+  }
+  .social-dock__toggle .icon-close {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* Open state */
+  .social-dock.is-open .social-dock__btn {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .social-dock.is-open .social-dock__toggle .icon-share {
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  .social-dock.is-open .social-dock__toggle .icon-close {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  /* Stagger the reveal */
+  .social-dock__btn:nth-child(1) { transition-delay: 0.00s; }
+  .social-dock__btn:nth-child(2) { transition-delay: 0.04s; }
+  .social-dock__btn:nth-child(3) { transition-delay: 0.08s; }
+  .social-dock__btn:nth-child(4) { transition-delay: 0.12s; }
+
+  /* Tooltip labels */
+  .social-dock__btn::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 56px;
+    background: rgba(10,26,30,0.82);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s;
+  }
+  .social-dock__btn:hover::after { opacity: 1; }
+</style>
+
+<div class="social-dock" id="socialDock">
+  <!-- WhatsApp -->
+  <!-- ▼ CHANGE THIS: replace 919876543210 with your full number incl. country code, no + or spaces -->
+  <a class="social-dock__btn social-dock__btn--wa"
+     href="https://wa.me/917657944044?text=Hello%20Indo%20Thai%20Global%2C%20I%20would%20like%20to%20know%20more%20about%20your%20solar%20drying%20systems."
+     target="_blank" rel="noopener" data-label="WhatsApp" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- Instagram -->
+  <!-- ▼ CHANGE THIS: replace indothaiglobal with your Instagram handle -->
+  <a class="social-dock__btn social-dock__btn--ig"
+     href="https://instagram.com/abc"
+     target="_blank" rel="noopener" data-label="Instagram" aria-label="Follow on Instagram">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+    </svg>
+  </a>
+
+  <!-- Facebook -->
+  <!-- ▼ CHANGE THIS: replace IndoThaiGlobal with your Facebook page name/ID -->
+  <a class="social-dock__btn social-dock__btn--fb"
+     href="https://facebook.com/abc"
+     target="_blank" rel="noopener" data-label="Facebook" aria-label="Visit on Facebook">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>
+  </a>
+
+  <!-- Email -->
+  <!-- ▼ CHANGE THIS: replace info@indothaiglobal.com with your actual email -->
+  <a class="social-dock__btn social-dock__btn--mail"
+     href="mailto:indothaiglobal20@gmail.com?subject=Product%20Enquiry%20—%20Indo%20Thai%20Global&body=Hello%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20solar%20drying%20systems%20and%20food%20processing%20equipment.%0A%0APlease%20provide%20more%20details.%0A%0AThank%20you."
+     data-label="Email Us" aria-label="Send us an email">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+  </a>
+</div>
+
+<script src="js/products.js"></script>
+
+<!-- Scroll reveal for big card -->
+<script>
+(function(){
+  const card = document.getElementById('solarDryerCard');
+  if (!card) return;
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    obs.observe(card);
+  } else {
+    card.classList.add('is-visible');
+  }
+})();
+</script>
+
+<!-- Pollen particles -->
+<script>
+(function(){
+  const wrap = document.getElementById('heroPollen');
+  if (!wrap) return;
+  for (let i = 0; i < 28; i++) {
+    const d = document.createElement('div');
+    d.className = 'pollen-dot';
+    const size = 3 + Math.random() * 5;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 9;
+    const dur   = 5 + Math.random() * 8;
+    const colors = ['rgba(255,230,100,0.6)','rgba(200,240,160,0.5)','rgba(160,220,255,0.5)','rgba(255,200,80,0.5)'];
+    d.style.cssText = `width:${size}px; height:${size}px; left:${left}%; bottom:${10 + Math.random()*60}%; background:${colors[Math.floor(Math.random()*colors.length)]}; animation-duration:${dur}s; animation-delay:${delay}s;`;
+    wrap.appendChild(d);
+  }
+})();
+</script>
+
+<!-- Subtype tabs -->
+<script>
+(function(){
+  const tabs   = document.querySelectorAll('.sd-type-tab');
+  const panels = document.querySelectorAll('.sd-type-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      panels.forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById('type-' + tab.dataset.target);
+      if (target) {
+        target.classList.add('active');
+        // trigger reveal for cards in this panel
+        target.querySelectorAll('.sd-mc, .sd-feat, .sd-dry-cat').forEach(function(el){ el.classList.add('is-visible'); });
+      }
+    });
+  });
+})();
+</script>
+
+<!-- Scroll reveal -->
+<script>
+(function(){
+  var els = document.querySelectorAll('.sd-mc, .sd-feat, .sd-dry-cat, .sd-compare');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+    els.forEach(function(el){ obs.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+<!-- Enquiry form handler -->
+<script>
+function handleEnquiry(e) {
+  e.preventDefault();
+  var name  = document.getElementById('enqName').value.trim();
+  var phone = document.getElementById('enqPhone').value.trim();
+  if (!name || !phone) { alert('Please fill in your Name and Phone number.'); return; }
+  var btn = e.target;
+  btn.textContent = '✓ Enquiry Sent!';
+  btn.style.background = 'linear-gradient(108deg, #2e9e66, #4ac080)';
+  setTimeout(function(){ btn.textContent = 'Submit Enquiry →'; btn.style.background = ''; }, 3200);
+  // In production: send via fetch to your backend or a form service
+}
+</script>
+
+<!-- ░░ THREE.JS — 3D HERO BACKGROUND ░░ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('heroCanvas');
+  const hero   = canvas.parentElement;
+  const W = () => hero.clientWidth;
+  const H = () => hero.clientHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+  renderer.setSize(W(), H());
+  renderer.setClearColor(0x1a4a6e, 1);
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x1a4a6e, 0.026);
+
+  const camera = new THREE.PerspectiveCamera(40, W() / H(), 0.1, 300);
+  camera.position.set(11, 7, 15);
+  camera.lookAt(0, 1.2, 0);
+
+  scene.add(new THREE.AmbientLight(0x1a4060, 0.8));
+
+  const sunLight = new THREE.DirectionalLight(0xe8f4ff, 2.5);
+  sunLight.position.set(12, 18, 10);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.width = sunLight.shadow.mapSize.height = 2048;
+  sunLight.shadow.camera.left   = sunLight.shadow.camera.bottom = -14;
+  sunLight.shadow.camera.right  = sunLight.shadow.camera.top   =  14;
+  sunLight.shadow.camera.far    = 60;
+  scene.add(sunLight);
+
+  const fill1 = new THREE.PointLight(0x4a9acc, 1.2, 30, 2);
+  fill1.position.set(-6, 4, -3);
+  scene.add(fill1);
+
+  const fill2 = new THREE.PointLight(0x4a9acc, 0.6, 20, 2);
+  fill2.position.set(4, 2, 6);
+  scene.add(fill2);
+
+  const M = {
+    frame:   new THREE.MeshStandardMaterial({ color: 0x2a3a4a, metalness: 0.88, roughness: 0.20 }),
+    frameAl: new THREE.MeshStandardMaterial({ color: 0xc8dce8, metalness: 0.92, roughness: 0.12 }),
+    poly:    new THREE.MeshPhysicalMaterial({ color: 0xadd8e6, transparent: true, opacity: 0.22, roughness: 0.04, transmission: 0.55, side: THREE.DoubleSide }),
+    polyEnd: new THREE.MeshPhysicalMaterial({ color: 0x9dd0e8, transparent: true, opacity: 0.28, roughness: 0.04, side: THREE.DoubleSide }),
+    white:   new THREE.MeshStandardMaterial({ color: 0xecece6, roughness: 0.72, metalness: 0.02 }),
+    meshTr:  new THREE.MeshStandardMaterial({ color: 0x4a8ab8, wireframe: true, transparent: true, opacity: 0.85 }),
+    trayFr:  new THREE.MeshStandardMaterial({ color: 0x3a6a90, metalness: 0.30, roughness: 0.55 }),
+    pr1:     new THREE.MeshStandardMaterial({ color: 0x1a6aaa, roughness: 0.85 }),
+    pr2:     new THREE.MeshStandardMaterial({ color: 0x2a8ac0, roughness: 0.80 }),
+    pr3:     new THREE.MeshStandardMaterial({ color: 0x1a5a90, roughness: 0.80 }),
+    panelB:  new THREE.MeshStandardMaterial({ color: 0x061830, roughness: 0.55, metalness: 0.10 }),
+    panelC:  new THREE.MeshStandardMaterial({ color: 0x040e22, roughness: 0.65 }),
+    panelFr: new THREE.MeshStandardMaterial({ color: 0x5a8aaa, metalness: 0.82, roughness: 0.18 }),
+    ridge:   new THREE.MeshStandardMaterial({ color: 0x8ab8d8, metalness: 0.88, roughness: 0.14 }),
+    support: new THREE.MeshStandardMaterial({ color: 0x2a3a4a, metalness: 0.85, roughness: 0.25 }),
+    vent:    new THREE.MeshStandardMaterial({ color: 0x304050, metalness: 0.70, roughness: 0.30 }),
+  };
+
+  const mainGroup = new THREE.Group();
+  mainGroup.position.y = -1.2;
+  scene.add(mainGroup);
+
+  const parts = [];
+  function reg(obj, dir) {
+    parts.push({ obj, base: obj.position.clone(), dir: dir || new THREE.Vector3() });
+    mainGroup.add(obj);
+  }
+
+  function mkM(geo, mat, x, y, z, rx, ry, rz) {
+    const m = new THREE.Mesh(geo, mat);
+    m.position.set(x || 0, y || 0, z || 0);
+    if (rx) m.rotation.x = rx;
+    if (ry) m.rotation.y = ry;
+    if (rz) m.rotation.z = rz;
+    m.castShadow = true;
+    m.receiveShadow = true;
+    return m;
+  }
+
+  const DL = 7.6, DW = 3.0, DH = 0.9, RH = 1.4;
+
+  [[-DL/2+.18,-DW/2+.18],[-DL/2+.18,DW/2-.18],[DL/2-.18,-DW/2+.18],[DL/2-.18,DW/2-.18],[0,-DW/2+.18],[0,DW/2-.18]]
+    .forEach(([lx, lz]) => {
+      reg(mkM(new THREE.CylinderGeometry(.048,.048,DH+.05,8), M.frame, lx, (DH+.05)/2, lz),
+          new THREE.Vector3(lx>.1?.6:lx<-.1?-.6:0, -.5, lz>0?1.3:-1.3));
+    });
+
+  [-DW/2, DW/2].forEach((z, i) => {
+    reg(mkM(new THREE.BoxGeometry(DL,.055,.055), M.frame, 0, DH, z),
+        new THREE.Vector3(0, -.35, i===0?-.9:.9));
+  });
+  for (let j = 0; j <= 8; j++) {
+    const x = -DL/2 + j*(DL/8);
+    reg(mkM(new THREE.BoxGeometry(.055,.055,DW), M.frame, x, DH, 0),
+        new THREE.Vector3(x<0?-.25:.25, -.3, 0));
+  }
+
+  [-DW/2+.025, DW/2-.025].forEach((z, i) => {
+    reg(mkM(new THREE.BoxGeometry(DL-.12,.32,.028), M.white, 0, DH+.16, z),
+        new THREE.Vector3(0, 0, i===0?-1.8:1.8));
+  });
+
+  reg(mkM(new THREE.BoxGeometry(DL+.14,.065,.065), M.ridge, 0, DH+RH, 0),
+      new THREE.Vector3(0, 1.8, 0));
+
+  const slantLen = Math.sqrt((DW/2)*(DW/2) + RH*RH);
+  const slantAng = Math.atan2(RH, DW/2);
+  const numRP = 10, rpLen = DL / numRP;
+
+  [-1, 1].forEach(sign => {
+    for (let p = 0; p < numRP; p++) {
+      const px = -DL/2 + p*rpLen + rpLen/2;
+      const pn = mkM(new THREE.BoxGeometry(rpLen-.015,.016,slantLen-.04), M.poly, px, DH+RH/2, sign*DW/4);
+      pn.rotation.x = sign * (Math.PI/2 - slantAng);
+      reg(pn, new THREE.Vector3(0, 1.1, sign*2.6));
+    }
+    mainGroup.add(mkM(new THREE.BoxGeometry(DL+.12,.032,.032), M.frameAl, 0, DH+.01, sign*(DW/2-.01)));
+  });
+
+  for (let j = 0; j <= 8; j++) {
+    const fx = -DL/2 + j*(DL/8);
+    [-1, 1].forEach(sign => {
+      const rafter = mkM(new THREE.BoxGeometry(.04,.04,slantLen+.04), M.frameAl, fx, DH+RH/2, sign*DW/4);
+      rafter.rotation.x = sign * (Math.PI/2 - slantAng);
+      mainGroup.add(rafter);
+    });
+  }
+
+  [-DL/2, DL/2].forEach((ex, i) => {
+    const sh = new THREE.Shape();
+    sh.moveTo(-DW/2, 0); sh.lineTo(DW/2, 0); sh.lineTo(0, RH); sh.closePath();
+    const tri = new THREE.Mesh(new THREE.ShapeGeometry(sh), M.polyEnd);
+    tri.position.set(ex + (i===0?-.012:.012), DH, 0);
+    tri.rotation.y = Math.PI/2;
+    tri.castShadow = false;
+    reg(tri, new THREE.Vector3(i===0?-3:3, 0, 0));
+
+    const vr = mkM(new THREE.TorusGeometry(.2,.032,8,16), M.vent, ex+(i===0?-.06:.06), DH+RH*.55, 0);
+    vr.rotation.y = Math.PI/2;
+    reg(vr, new THREE.Vector3(i===0?-3.5:3.5, .5, 0));
+    for (let s = 0; s < 4; s++) {
+      const sp = mkM(new THREE.BoxGeometry(.016,.4,.016), M.vent, ex+(i===0?-.06:.06), DH+RH*.55, 0);
+      sp.rotation.y = Math.PI/2; sp.rotation.z = s*Math.PI/4;
+      mainGroup.add(sp);
+    }
+  });
+
+  const trayPos = [
+    [-2.7,-.72],[-0.9,-.72],[0.9,-.72],[2.7,-.72],
+    [-2.7, .72],[-0.9, .72],[0.9, .72],[2.7, .72],
+  ];
+  const prMats = [M.pr1, M.pr2, M.pr3];
+  trayPos.forEach(([tx, tz], ti) => {
+    const tg = new THREE.Group();
+    tg.add(mkM(new THREE.BoxGeometry(1.3,.042,1.1), M.trayFr));
+    const ms = new THREE.Mesh(new THREE.PlaneGeometry(1.2,1.0,10,8), M.meshTr);
+    ms.rotation.x = -Math.PI/2; ms.position.y = .025; tg.add(ms);
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) {
+      const pm = prMats[(ti+r+c)%3];
+      const isRound = (r*c)%2===0;
+      const pg = isRound
+        ? new THREE.SphereGeometry(.055+Math.random()*.018, 6, 5)
+        : new THREE.BoxGeometry(.08,.038,.08);
+      const p = new THREE.Mesh(pg, pm);
+      if (isRound) p.scale.y = .52;
+      p.position.set(-.42+c*.22, .065, -.36+r*.25);
+      p.castShadow = true; tg.add(p);
+    }
+    tg.position.set(tx, DH+.14, tz);
+    reg(tg, new THREE.Vector3((tx>0?1.4:-1.4)*.5, .6+ti*.12, (tz>0?1.4:-1.4)));
+  });
+
+  const spG = new THREE.Group();
+  spG.add(mkM(new THREE.BoxGeometry(1.15,.024,.78), M.panelB));
+  spG.add(mkM(new THREE.BoxGeometry(1.17,.038,.80), M.panelFr, 0,-.007,0));
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 5; c++)
+    spG.add(mkM(new THREE.BoxGeometry(.18,.02,.2), M.panelC, -.4+c*.2, .018, -.26+r*.26));
+  spG.rotation.x = -Math.PI/5;
+  spG.position.set(-DL/2-.3, DH-.05, DW/2+1.1);
+  reg(spG, new THREE.Vector3(-1.8, 0, 3));
+
+  [-.45, .45].forEach(lx => {
+    mainGroup.add(mkM(new THREE.CylinderGeometry(.025,.025,.9,6), M.support, -DL/2-.3+lx, .45, DW/2+1.1));
+  });
+
+  const cPts = [
+    new THREE.Vector3(-DL/2-.3, DH+.1,  DW/2+.65),
+    new THREE.Vector3(-DL/2-.05,DH+.04, DW/2+.22),
+    new THREE.Vector3(-DL/2+.25,DH+.01, DW/2-.12),
+  ];
+  mainGroup.add(new THREE.Mesh(
+    new THREE.TubeGeometry(new THREE.CatmullRomCurve3(cPts), 14, .014, 5),
+    new THREE.MeshStandardMaterial({ color: 0x202020, roughness: .9 })
+  ));
+
+  const PC = 180;
+  const pArr = new Float32Array(PC*3);
+  const pVel = [];
+  for (let i = 0; i < PC; i++) {
+    pArr[i*3]   = (Math.random()-.5)*(DL-.6);
+    pArr[i*3+1] = DH+.12+Math.random()*.85;
+    pArr[i*3+2] = (Math.random()-.5)*(DW-.6);
+    pVel.push({ vx:(Math.random()-.5)*.007, vy:.004+Math.random()*.007, vz:(Math.random()-.5)*.006 });
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pArr, 3));
+  const pMesh = new THREE.Points(pGeo, new THREE.PointsMaterial({ color:0xadd8e6, size:.038, transparent:true, opacity:.5 }));
+  mainGroup.add(pMesh);
+
+  const sunBall = new THREE.Mesh(new THREE.SphereGeometry(.6,16,16), new THREE.MeshBasicMaterial({ color:0xadd8e6 }));
+  sunBall.position.set(12,18,10); scene.add(sunBall);
+  const sunGlow = new THREE.Mesh(new THREE.SphereGeometry(1.0,16,16), new THREE.MeshBasicMaterial({ color:0x8bc8e8, transparent:true, opacity:.10 }));
+  sunGlow.position.copy(sunBall.position); scene.add(sunGlow);
+  for (let i = 0; i < 12; i++) {
+    const a = (i/12)*Math.PI*2;
+    const rg = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(0,0,0), new THREE.Vector3(Math.cos(a)*1.6, Math.sin(a)*1.6, 0)
+    ]);
+    const ray = new THREE.Line(rg, new THREE.LineBasicMaterial({ color:0xadd8e6, transparent:true, opacity:.22 }));
+    ray.position.copy(sunBall.position); scene.add(ray);
+  }
+
+  let drag=false, mpx=0, mpy=0;
+  let rotX=.25, rotY=.55, tRX=.25, tRY=.55;
+  let zoom=17, tZoom=17;
+  let autoSpin=true, xray=false, exploded=false;
+  let explodeT=0, clock=0;
+
+  const onDown = e => {
+    drag=true; autoSpin=false;
+    document.getElementById('bAuto').classList.remove('on');
+    mpx = e.clientX ?? (e.touches && e.touches[0].clientX);
+    mpy = e.clientY ?? (e.touches && e.touches[0].clientY);
+  };
+  const onMove = e => {
+    if (!drag) return;
+    const cx = e.clientX ?? (e.touches && e.touches[0].clientX);
+    const cy = e.clientY ?? (e.touches && e.touches[0].clientY);
+    tRY += (cx - mpx) * .009; tRX += (cy - mpy) * .007;
+    tRX = Math.max(-.85, Math.min(1.25, tRX));
+    mpx = cx; mpy = cy;
+  };
+  const onUp = () => { drag = false; };
+
+  canvas.addEventListener('mousedown',  onDown);
+  canvas.addEventListener('mousemove',  onMove);
+  canvas.addEventListener('mouseup',    onUp);
+  canvas.addEventListener('mouseleave', onUp);
+  canvas.addEventListener('touchstart', onDown, { passive: true });
+  canvas.addEventListener('touchmove',  onMove, { passive: true });
+  canvas.addEventListener('touchend',   onUp);
+  canvas.addEventListener('wheel', e => {
+    tZoom += e.deltaY * .024; tZoom = Math.max(6, Math.min(32, tZoom));
+  }, { passive: true });
+
+  const heroContent = document.getElementById('heroContent');
+  const bTextToggle = document.getElementById('bTextToggle');
+  const textToggleLbl = document.getElementById('textToggleLabel');
+  let textVisible = true;
+  bTextToggle.addEventListener('click', () => {
+    textVisible = !textVisible;
+    heroContent.classList.toggle('hidden', !textVisible);
+    bTextToggle.classList.toggle('off', !textVisible);
+    textToggleLbl.textContent = textVisible ? 'Hide Text' : 'Show Text';
+  });
+
+  const arrowState = { up:false, down:false, left:false, right:false };
+  const arrowMap   = { bUp:'up', bDown:'down', bLeft:'left', bRight:'right' };
+  Object.entries(arrowMap).forEach(([id, dir]) => {
+    const btn = document.getElementById(id);
+    const startRotate = () => { arrowState[dir]=true; autoSpin=false; document.getElementById('bAuto').classList.remove('on'); };
+    const stopRotate  = () => { arrowState[dir]=false; };
+    btn.addEventListener('mousedown',  startRotate);
+    btn.addEventListener('touchstart', startRotate, { passive:true });
+    btn.addEventListener('mouseup',    stopRotate);
+    btn.addEventListener('mouseleave', stopRotate);
+    btn.addEventListener('touchend',   stopRotate);
+  });
+
+  document.getElementById('bAuto').addEventListener('click', () => {
+    autoSpin = !autoSpin;
+    document.getElementById('bAuto').classList.toggle('on', autoSpin);
+  });
+  document.getElementById('bXray').addEventListener('click', () => {
+    xray = !xray;
+    document.getElementById('bXray').classList.toggle('on', xray);
+  });
+  document.getElementById('bExplode').addEventListener('click', () => {
+    exploded = !exploded;
+    document.getElementById('bExplode').classList.toggle('on', exploded);
+  });
+  document.getElementById('bReset').addEventListener('click', () => {
+    tRX=.25; tRY=.55; tZoom=17; exploded=false; xray=false; autoSpin=true;
+    document.getElementById('bAuto').classList.add('on');
+    document.getElementById('bXray').classList.remove('on');
+    document.getElementById('bExplode').classList.remove('on');
+  });
+
+  function loop() {
+    requestAnimationFrame(loop);
+    clock += .016;
+
+    if (autoSpin) tRY += .004;
+    if (arrowState.left)  tRY -= .022;
+    if (arrowState.right) tRY += .022;
+    if (arrowState.up)    tRX -= .018;
+    if (arrowState.down)  tRX += .018;
+    tRX = Math.max(-.85, Math.min(1.25, tRX));
+    rotX += (tRX - rotX) * .09;
+    rotY += (tRY - rotY) * .09;
+    zoom += (tZoom - zoom) * .09;
+
+    mainGroup.rotation.x = rotX;
+    mainGroup.rotation.y = rotY;
+    camera.position.setLength(zoom);
+
+    explodeT += (exploded ? 1 : -1) * .045;
+    explodeT = Math.max(0, Math.min(1, explodeT));
+    const et = explodeT * explodeT * (3 - 2*explodeT);
+    parts.forEach(({ obj, base, dir }) => {
+      obj.position.set(base.x + dir.x*et, base.y + dir.y*et, base.z + dir.z*et);
+    });
+
+    M.poly.opacity     = .22 - (xray ? .19 : 0);
+    M.polyEnd.opacity  = .28 - (xray ? .24 : 0);
+    M.white.opacity    = xray ? .12 : 1;
+    M.white.transparent = xray;
+
+    const pp = pGeo.attributes.position.array;
+    for (let i = 0; i < PC; i++) {
+      pp[i*3]   += pVel[i].vx;
+      pp[i*3+1] += pVel[i].vy;
+      pp[i*3+2] += pVel[i].vz;
+      if (pp[i*3+1] > DH+1.1) {
+        pp[i*3]   = (Math.random()-.5)*(DL-.6);
+        pp[i*3+1] = DH+.12;
+        pp[i*3+2] = (Math.random()-.5)*(DW-.6);
+      }
+    }
+    
+    pGeo.attributes.position.needsUpdate = true;
+
+    sunGlow.scale.setScalar(1 + Math.sin(clock*1.1)*.06);
+    fill2.intensity = .4 + Math.sin(clock*.65)*.15;
+
+    mainGroup.position.y = -1.2 + Math.sin(clock * 0.5) * 0.18;
+
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(W(), H());
+    camera.aspect = W() / H();
+    camera.updateProjectionMatrix();
+  });
+
+  loop();
+})();
+</script>
+
+</body>
+>>>>>>> 414a99c (initial upload)
 </html>
