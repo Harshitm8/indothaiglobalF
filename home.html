@@ -342,33 +342,109 @@
   </div>
 </section>
 
-<div id="enquiry-section"></div>
-<script>
-  fetch('quote.html')
-    .then(res => res.text())
-    .then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const section = doc.querySelector('.quote-body');
-      document.getElementById('enquiry-section').innerHTML = section.outerHTML;
+<!-- ░░ ENQUIRY FORM ░░ -->
+<section class="enquiry-section" id="enquiry">
 
-      // inject a scoped fix for text visibility
-      const fix = document.createElement('style');
-      fix.textContent = `
-        .quote-body .eq-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
-        .quote-body .enquiry-title { font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 1.2rem; }
-        .quote-body .enquiry-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 320px; margin-bottom: 2rem; }
-        .quote-body .eq-perk { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: rgba(255,255,255,0.80); }
-        .quote-body .eq-contact-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: rgba(255,255,255,0.72); }
-        .quote-body .eq-form-card { background: #eaf3f6 !important; border-radius: 24px; padding: clamp(2rem,4vw,3rem); box-shadow: 0 32px 80px rgba(0,0,0,0.35); }
-        .quote-body .eq-form-card h3 { font-size: 1.4rem; font-weight: 800; color: #1a3a4a; }
-        .quote-body .form-field label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #4f6f7a; font-weight: 600; }
-        .quote-body .form-field input,
-        .quote-body .form-field textarea { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 1.5px solid rgba(90,200,232,0.28); background: #f8fcfa; font-size: 0.9rem; color: #1a3a4a; box-sizing: border-box; }
-      `;
-      document.head.appendChild(fix);
-    });
-</script>
+  <!-- Decorative blobs -->
+  <div class="eq-blob eq-blob--1" aria-hidden="true"></div>
+  <div class="eq-blob eq-blob--2" aria-hidden="true"></div>
+
+  <div class="container eq-wrap">
+
+    <!-- LEFT — info panel -->
+    <div class="enquiry-left reveal-left">
+      <div class="section-label eq-label-light">Enquiry</div>
+      <h2 class="enquiry-title">Tell Us Your<br/>Requirement</h2>
+      <p class="enquiry-subtitle">Looking for solar dryers or custom drying solutions? Drop us your requirement and our team will get back to you within 24 hours.</p>
+
+      <div class="eq-perks">
+        <div class="eq-perk"><span class="eq-perk-icon">&#9889;</span><span>Quick 24-hr Response</span></div>
+        <div class="eq-perk"><span class="eq-perk-icon">&#127775;</span><span>Free Expert Consultation</span></div>
+        <div class="eq-perk"><span class="eq-perk-icon">&#128230;</span><span>Custom Solutions Available</span></div>
+      </div>
+
+      <div class="eq-divider"></div>
+
+      <div class="enquiry-contact-strip">
+        <div class="eq-contact-item">
+          <span class="eq-icon">&#128222;</span>
+          <span>+91 88377-10200, +91 76579-44044</span>
+        </div>
+        <div class="eq-contact-item">
+          <span class="eq-icon">&#9993;&#65039;</span>
+          <span>
+            <a href="mailto:indothaiglobal20@gmail.com">indothaiglobal20@gmail.com</a>
+          </span>        
+        </div>
+        <div class="eq-contact-item">
+          <span class="eq-icon">&#128205;</span>
+          <span>Ludhiana, Punjab, India</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — form card -->
+    <div class="eq-form-card reveal-right">
+      <div class="eq-form-header">
+        <h3>Send Your Enquiry</h3>
+        <p>Fill in the details below — we'll reach out shortly.</p>
+      </div>
+      <form id="enquiryForm" novalidate>
+
+        <div class="form-grid-2">
+          <!-- Name -->
+          <div class="form-field">
+            <label for="eq-name">Your Name <span class="req">*</span></label>
+            <input type="text" id="eq-name" placeholder="Full name" required/>
+          </div>
+
+          <!-- Email -->
+          <div class="form-field">
+            <label for="eq-email">Email Address <span class="req">*</span></label>
+            <input type="email" id="eq-email" placeholder="you@example.com" required/>
+          </div>
+        </div>
+
+        <!-- Phone with country code -->
+        <div class="form-field">
+          <label for="eq-phone">Phone Number <span class="req">*</span></label>
+          <div class="phone-wrap">
+            <!-- Hidden real input for form submission -->
+            <input type="hidden" id="eq-country-val" value="+91"/>
+            <!-- Custom country picker -->
+            <div class="country-picker" id="countryPicker">
+              <button type="button" class="cp-btn" id="cpBtn" aria-haspopup="listbox" aria-expanded="false">
+                <span class="cp-flag" id="cpFlag">🇮🇳</span>
+                <span class="cp-code" id="cpCode">+91</span>
+                <span class="cp-arrow">▾</span>
+              </button>
+              <div class="cp-dropdown" id="cpDropdown" role="listbox">
+                <div class="cp-search-wrap">
+                  <input class="cp-search" id="cpSearch" type="text" placeholder="Search country or code…" autocomplete="off"/>
+                </div>
+                <div class="cp-list" id="cpList"></div>
+              </div>
+            </div>
+                        <input type="tel" id="eq-phone" placeholder="XXXXX XXXXX" required/>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="form-field">
+          <label for="eq-msg">Your Requirement</label>
+          <textarea id="eq-msg" placeholder="Tell us your industry, drying capacity needed, location and any specific requirement…"></textarea>
+        </div>
+
+        <button type="submit" class="eq-submit-btn">
+          <span>Send Enquiry</span>
+          <span class="eq-btn-arrow">&#8594;</span>
+        </button>
+
+      </form>
+    </div>
+
+  </div>
+</section>
 
 <!-- ░░ FOOTER ░░ -->
 <footer class="site-footer">
