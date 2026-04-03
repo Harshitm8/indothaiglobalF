@@ -350,9 +350,23 @@
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, 'text/html');
       const section = doc.querySelector('.quote-body');
-      const styles = doc.querySelector('style');
-      document.head.appendChild(styles);
       document.getElementById('enquiry-section').innerHTML = section.outerHTML;
+
+      // inject a scoped fix for text visibility
+      const fix = document.createElement('style');
+      fix.textContent = `
+        .quote-body .eq-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+        .quote-body .enquiry-title { font-size: clamp(2.2rem,4vw,3.2rem); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 1.2rem; }
+        .quote-body .enquiry-subtitle { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 320px; margin-bottom: 2rem; }
+        .quote-body .eq-perk { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; color: rgba(255,255,255,0.80); }
+        .quote-body .eq-contact-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: rgba(255,255,255,0.72); }
+        .quote-body .eq-form-card { background: #eaf3f6 !important; border-radius: 24px; padding: clamp(2rem,4vw,3rem); box-shadow: 0 32px 80px rgba(0,0,0,0.35); }
+        .quote-body .eq-form-card h3 { font-size: 1.4rem; font-weight: 800; color: #1a3a4a; }
+        .quote-body .form-field label { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #4f6f7a; font-weight: 600; }
+        .quote-body .form-field input,
+        .quote-body .form-field textarea { width: 100%; padding: 0.8rem 1rem; border-radius: 10px; border: 1.5px solid rgba(90,200,232,0.28); background: #f8fcfa; font-size: 0.9rem; color: #1a3a4a; box-sizing: border-box; }
+      `;
+      document.head.appendChild(fix);
     });
 </script>
 
