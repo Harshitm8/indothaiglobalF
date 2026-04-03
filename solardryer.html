@@ -668,64 +668,20 @@
 </head>
 <body>
 
-<nav class="nav" id="nav">
-  <div class="nav-accent" aria-hidden="true"></div>
-  <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
-  <div class="nav-inner">
-    <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
-      <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
-      <div class="nav-brand-words">
-        <span class="nav-brand-name">Indo Thai Global</span>
-        <span class="nav-brand-tag">Est. 2005 &middot; India</span>
-      </div>
-    </a>
-    <div class="nav-divider" aria-hidden="true"></div>
-    <ul class="nav-links" role="list">
-      <li><a href="home.html"           class="nav-link active">Home</a></li>
-      <li><a href="products.html"       class="nav-link active">Products</a></li>
-      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
-      <li><a href="quality.html"        class="nav-link">Quality</a></li>
-      <li><a href="about.html"          class="nav-link">About</a></li>
-      <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
-      <li><a href="contact.html"        class="nav-link">Contact</a></li>
-    </ul>
-    <!-- Language Switcher -->
-    <div class="nav-lang" id="navLang">
-      <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
-        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
-        <span id="langCurrent">English</span>
-        <span class="nav-lang-arrow">▾</span>
-      </button>
-      <div class="nav-lang-dropdown" id="langDropdown" role="listbox">
-        <div class="lang-search-wrap">
-          <input class="lang-search" id="langSearch" type="text" placeholder="Search language…" autocomplete="off"/>
-        </div>
-        <div class="lang-options-scroll" id="langOptionsScroll"></div>
-      </div>
-    </div>
-    <a href="quote.html" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
-    <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-    </button>
-  </div>
-</nav>
+ <div id="navbar"></div>
+  
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
 
-<div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
-  <ul class="drawer-links" role="list">
-    <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
-    <li><a href="products.html"       class="drawer-link">Products       <span class="drawer-arrow">›</span></a></li>
-    <li><a href="infrastructure.html" class="drawer-link">Infrastructure <span class="drawer-arrow">›</span></a></li>
-    <li><a href="quality.html"        class="drawer-link">Quality        <span class="drawer-arrow">›</span></a></li>
-    <li><a href="about.html"          class="drawer-link">About          <span class="drawer-arrow">›</span></a></li>
-    <li><a href="gallery.html"        class="drawer-link">Gallery        <span class="drawer-arrow">›</span></a></li>
-    <li><a href="contact.html"        class="drawer-link">Contact        <span class="drawer-arrow">›</span></a></li>
-  </ul>
-  <div class="drawer-cta-wrap">
-    <a href="quote.html" class="drawer-cta">Get a Quote →</a>
-  </div>
-</div>
+        // 2. Then load navbar.js AFTER HTML is injected
+        var script = document.createElement('script');
+        script.src = 'js/navbar.js';
+        document.body.appendChild(script);
+      });
+  </script>
 
   <!-- ░░ 3D INTERACTIVE HERO ░░ -->
   <section class="hero" aria-label="Solar Dryer Hero">
@@ -1587,6 +1543,15 @@
     </svg>
   </a>
 
+  <!-- Twitter / X -->
+  <a class="social-dock__btn social-dock__btn--tw"
+    href="https://twitter.com/indothaipb"
+    target="_blank" rel="noopener" data-label="Twitter" aria-label="Follow on Twitter">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  </a>
+
   <!-- Email -->
   <!-- ▼ CHANGE THIS: replace info@indothaiglobal.com with your actual email -->
   <a class="social-dock__btn social-dock__btn--mail"
@@ -1658,19 +1623,34 @@
 })();
 </script>
 
-<!-- Scroll reveal -->
+<!-- Scroll Reveal -->
 <script>
 (function(){
-  var els = document.querySelectorAll('.sd-mc, .sd-feat, .sd-dry-cat, .sd-compare');
+  document.querySelectorAll('[data-reveal]').forEach(function(el){
+    var dir = el.getAttribute('data-reveal');
+    if (dir === 'left')       el.classList.add('reveal-left');
+    else if (dir === 'right') el.classList.add('reveal-right');
+    else                      el.classList.add('reveal-up');
+  });
+
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+        } else {
+          e.target.classList.remove('in-view'); // reverse on scroll up
+        }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
-    els.forEach(function(el){ obs.observe(el); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      obs.observe(el);
+    });
   } else {
-    els.forEach(function(el){ el.classList.add('is-visible'); });
+    document.querySelectorAll('[data-reveal]').forEach(function(el){
+      el.classList.add('in-view');
+    });
   }
 })();
 </script>

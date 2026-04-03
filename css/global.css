@@ -301,6 +301,11 @@ button { font: inherit; cursor: pointer; }
   line-height: 1.4;
 }
 
+.social-dock__btn--tw {
+  background-color: #000000; /* Black for X */
+  color: #ffffff;
+}
+
 /* Bottom bar — warm wood grain tone, items at each corner */
 .footer-bottom {
   padding: 9px clamp(1.2rem, 4vw, 2.8rem);

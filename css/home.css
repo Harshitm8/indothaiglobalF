@@ -173,9 +173,7 @@ p {
   line-height: 0;
 }
 .hero-slide-prev { left: clamp(1rem,3vw,2.5rem); padding-left: 2px;}
-.hero-slide-next { right: clamp(1rem,3vw,2.5rem);
-padding-left: 2px;
- }
+.hero-slide-next { right: clamp(1rem,3vw,2.5rem); padding-left: 2px;}
 .hero-slide-arrow:hover {
   background: rgba(90,200,232,0.35);
   border-color: var(--teal, #5ac8e8);

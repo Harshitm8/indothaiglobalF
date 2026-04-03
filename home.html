@@ -9,135 +9,24 @@
   <link rel="stylesheet" href="css/global.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/home.css"/>
-  <style>
-    /* ── Custom Country Picker ── */
-    .phone-wrap { display: flex; gap: 8px; align-items: stretch; }
-    .country-picker { position: relative; flex-shrink: 0; }
-    .cp-btn {
-      display: inline-flex; align-items: center; gap: 5px;
-      height: 100%; min-height: 44px; padding: 0 10px;
-      border: 1.5px solid rgba(90,200,232,0.35); border-radius: 10px;
-      background: #f5fafd; cursor: pointer; font-family: inherit;
-      font-size: 0.85rem; font-weight: 700; color: #0d2a1a;
-      white-space: nowrap; transition: border-color 0.2s, background 0.2s;
-    }
-    .cp-btn:hover, .country-picker.open .cp-btn { border-color: #5ac8e8; background: #fff; }
-    .cp-flag { font-size: 1.1rem; line-height: 1; }
-    .cp-code { font-size: 0.82rem; font-weight: 700; color: #1a5040; }
-    .cp-arrow { font-size: 0.55rem; opacity: 0.5; transition: transform 0.2s; }
-    .country-picker.open .cp-arrow { transform: rotate(180deg); }
-    .cp-dropdown {
-      position: absolute; top: calc(100% + 6px); left: 0; width: 300px;
-      background: #fff; border: 1px solid rgba(90,200,232,0.22); border-radius: 14px;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.13), 0 4px 14px rgba(42,154,191,0.10);
-      overflow: hidden; opacity: 0; visibility: hidden;
-      transform: translateY(6px) scale(0.98); transform-origin: top left;
-      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s; z-index: 9999;
-    }
-    .country-picker.open .cp-dropdown { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-    .cp-search-wrap { padding: 10px 10px 7px; border-bottom: 1px solid rgba(90,200,232,0.12); }
-    .cp-search {
-      width: 100%; padding: 7px 10px 7px 30px;
-      border: 1.5px solid rgba(90,200,232,0.22); border-radius: 8px;
-      font-family: inherit; font-size: 0.80rem; color: #0d2a1a; outline: none;
-      background: #f5fafd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%235ac8e8' stroke-width='2.5'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 9px center;
-      transition: border-color 0.2s;
-    }
-    .cp-search::placeholder { color: #aac8d8; }
-    .cp-search:focus { border-color: #5ac8e8; background-color: #fff; }
-    .cp-list { max-height: 260px; overflow-y: auto; padding: 5px 0; scrollbar-width: thin; scrollbar-color: rgba(90,200,232,0.28) transparent; }
-    .cp-list::-webkit-scrollbar { width: 4px; }
-    .cp-list::-webkit-scrollbar-thumb { background: rgba(90,200,232,0.32); border-radius: 4px; }
-    .cp-group-label { font-size: 0.60rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: #5ac8e8; padding: 8px 12px 3px; opacity: 0.8; }
-    .cp-item { display: flex; align-items: center; gap: 9px; width: 100%; padding: 7px 12px; background: none; border: none; cursor: pointer; text-align: left; transition: background 0.13s; }
-    .cp-item:hover { background: rgba(90,200,232,0.09); }
-    .cp-item.active { background: rgba(42,154,191,0.08); }
-    .cp-item-flag { font-size: 1.1rem; line-height: 1; flex-shrink: 0; width: 22px; text-align: center; }
-    .cp-item-name { font-size: 0.84rem; font-weight: 500; color: #0d2a1a; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cp-item.active .cp-item-name { color: #1a7aaa; font-weight: 700; }
-    .cp-item-code { font-size: 0.70rem; font-weight: 700; color: #5ac8e8; background: rgba(90,200,232,0.11); padding: 2px 5px; border-radius: 4px; flex-shrink: 0; font-family: monospace; }
-    .cp-item.active .cp-item-code { background: rgba(42,154,191,0.14); color: #1a7aaa; }
-    .cp-item.active::after { content: "\2713"; font-size: 0.72rem; color: #2a9abf; }
-    .cp-item[hidden] { display: none; }
-    .cp-no-results { padding: 14px 12px; font-size: 0.82rem; color: #aac8d8; text-align: center; }
-    /* Hide Google Translate toolbar & banner */
-    .goog-te-banner-frame, .goog-te-balloon-frame { display: none !important; }
-    .goog-te-gadget { display: none !important; }
-    body { top: 0 !important; }
-    #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
-  </style>
+  <link rel="stylesheet" href="css/products.css"/>
 </head>
 <body>
 
-<!-- Google Translate (hidden) -->
-<div id="google_translate_element" style="display:none"></div>
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, "google_translate_element");
-  }
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <div id="navbar"></div>
+  
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
 
-<!-- ░░ NAVBAR ░░ -->
-<nav class="nav" id="nav">
-  <div class="nav-accent" aria-hidden="true"></div>
-  <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
-  <div class="nav-inner">
-    <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
-      <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
-      <div class="nav-brand-words">
-        <span class="nav-brand-name">Indo Thai Global</span>
-        <span class="nav-brand-tag">Est. 2005 &middot; India</span>
-      </div>
-    </a>
-    <div class="nav-divider" aria-hidden="true"></div>
-    <ul class="nav-links" role="list">
-      <li><a href="home.html"           class="nav-link active">Home</a></li>
-      <li><a href="products.html"       class="nav-link">Products</a></li>
-      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
-      <li><a href="quality.html"        class="nav-link">Quality</a></li>
-      <li><a href="about.html"          class="nav-link">About</a></li>
-      <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
-      <li><a href="contact.html"        class="nav-link">Contact</a></li>
-    </ul>
-    <!-- Language Switcher -->
-    <div class="nav-lang" id="navLang">
-      <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
-        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
-        <span id="langCurrent">English</span>
-        <span class="nav-lang-arrow">▾</span>
-      </button>
-      <div class="nav-lang-dropdown" id="langDropdown" role="listbox">
-        <div class="lang-search-wrap">
-          <input class="lang-search" id="langSearch" type="text" placeholder="Search language…" autocomplete="off"/>
-        </div>
-        <div class="lang-options-scroll" id="langOptionsScroll"></div>
-      </div>
-    </div>
-    <a href="#enquiry" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
-    <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-    </button>
-  </div>
-</nav>
-
-<div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
-  <ul class="drawer-links" role="list">
-    <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
-    <li><a href="products.html"       class="drawer-link">Products       <span class="drawer-arrow">›</span></a></li>
-    <li><a href="infrastructure.html" class="drawer-link">Infrastructure <span class="drawer-arrow">›</span></a></li>
-    <li><a href="quality.html"        class="drawer-link">Quality        <span class="drawer-arrow">›</span></a></li>
-    <li><a href="about.html"          class="drawer-link">About          <span class="drawer-arrow">›</span></a></li>
-    <li><a href="gallery.html"        class="drawer-link">Gallery        <span class="drawer-arrow">›</span></a></li>
-    <li><a href="contact.html"        class="drawer-link">Contact        <span class="drawer-arrow">›</span></a></li>
-  </ul>
-  <div class="drawer-cta-wrap">
-    <a href="#enquiry" class="drawer-cta">Get a Quote →</a>
-  </div>
-</div>
-
+        // 2. Then load navbar.js AFTER HTML is injected
+        var script = document.createElement('script');
+        script.src = 'js/navbar.js';
+        document.body.appendChild(script);
+      });
+  </script>
 
 <!-- ░░ HERO ░░ -->
 <section class="hero" aria-label="Hero">
@@ -959,6 +848,10 @@
     fill: #fff;
     flex-shrink: 0;
   }
+  .social-dock__btn--tw {
+  background-color: #000000; /* Black for X */
+  color: #ffffff;
+}
   .social-dock__btn:hover {
     transform: translateY(-2px) scale(1.10) !important;
     box-shadow: 0 8px 22px rgba(0,0,0,0.30);
@@ -1045,7 +938,6 @@
 
 <div class="social-dock" id="socialDock">
   <!-- WhatsApp -->
-  <!-- ▼ CHANGE THIS: replace 919876543210 with your full number incl. country code, no + or spaces -->
   <a class="social-dock__btn social-dock__btn--wa"
      href="https://wa.me/917657944044?text=Hello%20Indo%20Thai%20Global%2C%20I%20would%20like%20to%20know%20more%20about%20your%20solar%20drying%20systems."
      target="_blank" rel="noopener" data-label="WhatsApp" aria-label="Chat on WhatsApp">
@@ -1055,9 +947,8 @@
   </a>
 
   <!-- Instagram -->
-  <!-- ▼ CHANGE THIS: replace indothaiglobal with your Instagram handle -->
   <a class="social-dock__btn social-dock__btn--ig"
-     href="https://instagram.com/abc"
+     href="https://instagram.com/indo_thaiglobal"
      target="_blank" rel="noopener" data-label="Instagram" aria-label="Follow on Instagram">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
@@ -1065,17 +956,24 @@
   </a>
 
   <!-- Facebook -->
-  <!-- ▼ CHANGE THIS: replace IndoThaiGlobal with your Facebook page name/ID -->
   <a class="social-dock__btn social-dock__btn--fb"
-     href="https://facebook.com/abc"
+     href="https://facebook.com/indothaiglobal"
      target="_blank" rel="noopener" data-label="Facebook" aria-label="Visit on Facebook">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
     </svg>
   </a>
 
+  <!-- Twitter / X -->
+  <a class="social-dock__btn social-dock__btn--tw"
+    href="https://twitter.com/indothaipb"
+    target="_blank" rel="noopener" data-label="Twitter" aria-label="Follow on Twitter">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  </a>
+
   <!-- Email -->
-  <!-- ▼ CHANGE THIS: replace info@indothaiglobal.com with your actual email -->
   <a class="social-dock__btn social-dock__btn--mail"
      href="mailto:indothaiglobal20@gmail.com?subject=Product%20Enquiry%20—%20Indo%20Thai%20Global&body=Hello%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20solar%20drying%20systems%20and%20food%20processing%20equipment.%0A%0APlease%20provide%20more%20details.%0A%0AThank%20you."
      data-label="Email Us" aria-label="Send us an email">

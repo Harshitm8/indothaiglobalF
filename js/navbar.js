@@ -280,22 +280,54 @@
   }
 
   /* ── Google Translate ── */
+  function setCookies(val) {
+    var domains = ['', location.hostname, '.' + location.hostname];
+    domains.forEach(function(d) {
+      var extra = d ? '; domain=' + d : '';
+      document.cookie = 'googtrans=' + val + '; path=/' + extra;
+    });
+  }
+
   function doTranslate(code) {
-    var val = '/en/' + code;
-    document.cookie = 'googtrans=' + val + '; path=/';
-    document.cookie = 'googtrans=' + val + '; path=/; domain=' + location.hostname;
-    document.cookie = 'googtrans=' + val + '; path=/; domain=.' + location.hostname;
+    setCookies('/en/' + code);
+    // Try to use the live combo if widget is already ready
     var combo = document.querySelector('.goog-te-combo');
-    if (combo) { combo.value = code; combo.dispatchEvent(new Event('change')); }
-    else { location.reload(); }
+    if (combo) {
+      combo.value = code;
+      combo.dispatchEvent(new Event('change'));
+      return;
+    }
+    // Widget not ready yet — wait up to 3 s then reload
+    var waited = 0;
+    var poll = setInterval(function() {
+      waited += 100;
+      var c = document.querySelector('.goog-te-combo');
+      if (c) {
+        clearInterval(poll);
+        c.value = code;
+        c.dispatchEvent(new Event('change'));
+      } else if (waited >= 3000) {
+        clearInterval(poll);
+        location.reload();
+      }
+    }, 100);
   }
 
   function restoreEnglish() {
-    ['', location.hostname, '.' + location.hostname].forEach(function(d) {
+    var domains = ['', location.hostname, '.' + location.hostname];
+    domains.forEach(function(d) {
       var extra = d ? '; domain=' + d : '';
       document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/' + extra;
+      document.cookie = 'googtrans=/en/en; path=/' + extra;
     });
-    location.reload();
+    // If widget is present, use it directly to avoid reload loop
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+      combo.value = 'en';
+      combo.dispatchEvent(new Event('change'));
+    } else {
+      location.reload();
+    }
   }
 
   /* ── Filter ── */

@@ -1,0 +1,67 @@
+<div id="google_translate_element" style="display:none"></div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({ pageLanguage: "en", autoDisplay: false }, "google_translate_element");
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- ░░ NAVBAR ░░ -->
+<nav class="nav" id="nav">
+  <div class="nav-accent" aria-hidden="true"></div>
+  <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
+  <div class="nav-inner">
+    <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
+      <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
+      <div class="nav-brand-words">
+        <span class="nav-brand-name">Indo Thai Global</span>
+        <span class="nav-brand-tag">Est. 2005 &middot; India</span>
+      </div>
+    </a>
+    <div class="nav-divider" aria-hidden="true"></div>
+    <ul class="nav-links" role="list">
+      <li><a href="home.html"           class="nav-link active">Home</a></li>
+      <li><a href="products.html"       class="nav-link">Products</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="quality.html"        class="nav-link">Quality</a></li>
+      <li><a href="about.html"          class="nav-link">About</a></li>
+      <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
+      <li><a href="contact.html"        class="nav-link">Contact</a></li>
+    </ul>
+    <!-- Language Switcher -->
+    <div class="nav-lang" id="navLang">
+      <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
+        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
+        <span id="langCurrent">English</span>
+        <span class="nav-lang-arrow">▾</span>
+      </button>
+      <div class="nav-lang-dropdown" id="langDropdown" role="listbox">
+        <div class="lang-search-wrap">
+          <input class="lang-search" id="langSearch" type="text" placeholder="Search language…" autocomplete="off"/>
+        </div>
+        <div class="lang-options-scroll" id="langOptionsScroll"></div>
+      </div>
+    </div>
+    <a href="quote.html" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
+    <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
+  <ul class="drawer-links" role="list">
+    <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
+    <li><a href="products.html"       class="drawer-link">Products       <span class="drawer-arrow">›</span></a></li>
+    <li><a href="infrastructure.html" class="drawer-link">Infrastructure <span class="drawer-arrow">›</span></a></li>
+    <li><a href="quality.html"        class="drawer-link">Quality        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="about.html"          class="drawer-link">About          <span class="drawer-arrow">›</span></a></li>
+    <li><a href="gallery.html"        class="drawer-link">Gallery        <span class="drawer-arrow">›</span></a></li>
+    <li><a href="contact.html"        class="drawer-link">Contact        <span class="drawer-arrow">›</span></a></li>
+  </ul>
+  <div class="drawer-cta-wrap">
+    <a href="quote.html" class="drawer-cta">Get a Quote →</a>
+  </div>
+</div>
