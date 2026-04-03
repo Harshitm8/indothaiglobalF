@@ -395,13 +395,13 @@
           <!-- Name -->
           <div class="form-field">
             <label for="eq-name">Your Name <span class="req">*</span></label>
-            <input type="text" id="eq-name" placeholder="Full name" required/>
+            <input type="text" id="eq-name" name="name" placeholder="Full name" required/>
           </div>
 
           <!-- Email -->
           <div class="form-field">
             <label for="eq-email">Email Address <span class="req">*</span></label>
-            <input type="email" id="eq-email" placeholder="you@example.com" required/>
+            <input type="email" id="eq-email" name="email" placeholder="you@example.com" required/>
           </div>
         </div>
 
@@ -410,7 +410,7 @@
           <label for="eq-phone">Phone Number <span class="req">*</span></label>
           <div class="phone-wrap">
             <!-- Hidden real input for form submission -->
-            <input type="hidden" id="eq-country-val" value="+91"/>
+            <input type="hidden" id="eq-country-val" name="country" value="+91"/>
             <!-- Custom country picker -->
             <div class="country-picker" id="countryPicker">
               <button type="button" class="cp-btn" id="cpBtn" aria-haspopup="listbox" aria-expanded="false">
@@ -425,14 +425,14 @@
                 <div class="cp-list" id="cpList"></div>
               </div>
             </div>
-                        <input type="tel" id="eq-phone" placeholder="XXXXX XXXXX" required/>
+            <input type="tel" id="eq-phone" name="phone" placeholder="XXXXX XXXXX" required/>
           </div>
         </div>
 
         <!-- Message -->
         <div class="form-field">
           <label for="eq-msg">Your Requirement</label>
-          <textarea id="eq-msg" placeholder="Tell us your industry, drying capacity needed, location and any specific requirement…"></textarea>
+          <textarea id="eq-msg" name="message" placeholder="Tell us your industry, drying capacity needed, location and any specific requirement…"></textarea>
         </div>
 
         <button type="submit" class="eq-submit-btn">
@@ -984,7 +984,7 @@
 </div>
 
 <script>
-const form = document.getElementById('quoteForm');
+const form = document.getElementById('enquiryForm');
 if (form) {
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
