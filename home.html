@@ -982,5 +982,40 @@
     </svg>
   </a>
 </div>
+
+<script>
+const form = document.getElementById('quoteForm');
+if (form) {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('.eq-submit-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span>Sending…</span>';
+
+    const data = new FormData(form);
+    try {
+      const res = await fetch('submit_quote.php', { method: 'POST', body: data });
+      const json = await res.json();
+      if (json.success) {
+        form.innerHTML = `
+          <div style="text-align:center; padding: 3rem 1rem;">
+            <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
+            <h3 style="color:#1a7aaa; font-size:1.5rem; margin-bottom:0.5rem;">Enquiry Sent!</h3>
+            <p style="color:#4f6f7a;">Thank you! Our team will get back to you within 24 hours.</p>
+          </div>`;
+      } else {
+        btn.disabled = false;
+        btn.innerHTML = '<span>Send Enquiry</span><span class="eq-btn-arrow">→</span>';
+        alert('Something went wrong. Please try again.');
+      }
+    } catch(err) {
+      btn.disabled = false;
+      btn.innerHTML = '<span>Send Enquiry</span><span class="eq-btn-arrow">→</span>';
+      alert('Network error. Please try again.');
+    }
+  });
+}
+</script>
+
 </body>
 </html>
