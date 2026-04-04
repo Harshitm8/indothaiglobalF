@@ -669,10 +669,12 @@
 </head>
 <body>
 
+<!-- ░░ STEP 2 — NAVBAR ░░ -->
 <nav class="nav" id="nav">
   <div class="nav-accent" aria-hidden="true"></div>
   <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
   <div class="nav-inner">
+
     <a href="home.html" class="nav-brand" aria-label="Indo Thai Global — Home">
       <img src="assets/logo.png" alt="Indo Thai Global" class="nav-logo" draggable="false"/>
       <div class="nav-brand-words">
@@ -680,20 +682,23 @@
         <span class="nav-brand-tag">Est. 2005 &middot; India</span>
       </div>
     </a>
+
     <div class="nav-divider" aria-hidden="true"></div>
+
     <ul class="nav-links" role="list">
-      <li><a href="home.html"           class="nav-link active">Home</a></li>
-      <li><a href="products.html"       class="nav-link active">Products</a></li>
+      <li><a href="home.html"           class="nav-link">Home</a></li>
+      <li><a href="products.html"       class="nav-link">Products</a></li>
       <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
       <li><a href="quality.html"        class="nav-link">Quality</a></li>
       <li><a href="about.html"          class="nav-link">About</a></li>
       <li><a href="gallery.html"        class="nav-link">Gallery</a></li>
       <li><a href="contact.html"        class="nav-link">Contact</a></li>
     </ul>
+
     <!-- Language Switcher -->
     <div class="nav-lang" id="navLang">
       <button class="nav-lang-btn" id="langBtn" aria-label="Select language" aria-haspopup="listbox" aria-expanded="false">
-        <span class="nav-lang-flag" id="langFlag">🇬🇧</span>
+        <span class="nav-lang-flag" id="langFlag">🇺🇸</span>
         <span id="langCurrent">English</span>
         <span class="nav-lang-arrow">▾</span>
       </button>
@@ -704,15 +709,21 @@
         <div class="lang-options-scroll" id="langOptionsScroll"></div>
       </div>
     </div>
+
+    <!-- CTA: use href="#enquiry" on home.html, href="quote.html" on all other pages -->
     <a href="quote.html" class="nav-cta">Get a Quote <span class="cta-arrow">→</span></a>
+
     <button class="nav-burger" id="burger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="drawer">
       <span class="burger-line"></span>
       <span class="burger-line"></span>
       <span class="burger-line"></span>
     </button>
+
   </div>
 </nav>
 
+
+<!-- ░░ STEP 3 — DRAWER (paste right after </nav>) ░░ -->
 <div class="nav-drawer" id="drawer" role="navigation" aria-label="Mobile navigation">
   <ul class="drawer-links" role="list">
     <li><a href="home.html"           class="drawer-link">Home           <span class="drawer-arrow">›</span></a></li>
