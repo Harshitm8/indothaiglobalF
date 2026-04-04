@@ -37,11 +37,8 @@ html, body {
   display: flex; flex-direction: column;
   align-items: center; text-align: center; gap: 14px;
   opacity: 0;
-  margin-top: 3vh;
-  max-width: 90vw;
-  padding: 0 20px;
+  margin-top: -12vh;
 }
-
 #content.visible {
   animation: fadeUp 0.9s cubic-bezier(.22,1,.36,1) forwards;
 }
@@ -52,30 +49,23 @@ html, body {
 
 .welcome-text {
   font-family: 'Jost', sans-serif;
-  font-weight: 300;
+  font-weight: 1000;
   font-size: clamp(20px, 2.8vw, 30px);
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  background: rgba(20,50,5,0.45);
-  padding: 6px 24px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
+  color: #233505;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.3);
   margin-bottom: 2px;
 }
+
 .eyebrow {
   font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: clamp(13px, 1.8vw, 20px);
+  font-weight: 800;
+  font-size: clamp(14px, 1.8vw, 20px);
   letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  background: rgba(20,50,5,0.45);
-  padding: 6px 24px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
+  color: #1a3505;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.25);
 }
 
 h1 {
@@ -98,35 +88,24 @@ h1 em { font-style: italic; color: #2a4a08; font-family: 'Playfair Display', ser
 
 .sub {
   font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  font-size: clamp(14px, 1.6vw, 20px);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #fff;
-  max-width: 380px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  background: rgba(20,50,5,0.45);
-  padding: 8px 20px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
-  text-align: center;
+  font-weight: 1000;
+  font-size: clamp(18px, 2.2vw, 26px);
+  letter-spacing: 0.05em;
+  color: #1a3505;
+  max-width: 420px;
+  text-shadow: 0 1px 4px rgba(255,255,255,0.35);
 }
+
 .hint {
   margin-top: 18px;
   font-family: 'Jost', sans-serif;
-  font-weight: 400;
-  font-size: 11px;
+  font-weight: 950;
+  font-size: 14px;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: #fff;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-  background: rgba(20,50,5,0.45);
-  padding: 6px 22px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
+  color: #1a3505;
   animation: blink 3s ease-in-out infinite;
 }
-
 @keyframes blink {
   0%,100% { opacity: 0.3; }
   50%      { opacity: 0.8; }
