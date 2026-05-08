@@ -384,7 +384,8 @@ document.querySelectorAll('.nav-dropdown-btn').forEach(btn => {
   });
 });
 
-document.addEventListener('click', () => {
-  document.querySelectorAll('.nav-has-dropdown.open')
-    .forEach(el => el.classList.remove('open'));
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.nav-has-dropdown.open').forEach(el => {
+    if (!el.contains(e.target)) el.classList.remove('open');
+  });
 });
