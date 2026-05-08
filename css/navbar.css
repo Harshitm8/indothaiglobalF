@@ -377,16 +377,19 @@ body { top: 0 !important; }
 .drawer-dropdown-btn {
   background: none;
   border: none;
+  border-bottom: 1px solid var(--border);
   width: 100%;
   text-align: left;
-  font: inherit;
-  font-size: 16px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  padding: 12px 0;
+  padding: 0.9rem 0.8rem;
   display: flex;
   justify-content: space-between;
-  color: inherit;
-  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+  color: var(--text-mid);
+  border-radius: 8px;
 }
 
 .drawer-sub {
@@ -396,4 +399,4 @@ body { top: 0 !important; }
 }
 .drawer-has-dropdown.open .drawer-sub { display: block; }
 
-.drawer-sub-link { font-size: 14px; opacity: 0.85; }
+.drawer-sub-link { font-size: 1rem; opacity: 0.85; }
