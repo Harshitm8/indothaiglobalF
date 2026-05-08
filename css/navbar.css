@@ -348,7 +348,12 @@ body { top: 0 !important; }
   right: 0;
   height: 10px;
 }
+
 .nav-has-dropdown.open .nav-dropdown { display: block; }
+
+@media (hover: hover) {
+  .nav-has-dropdown:hover .nav-dropdown { display: block; }
+}
 
 .nav-dropdown-link {
   display: block;
