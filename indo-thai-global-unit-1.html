@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Products — Indo Thai Global</title>
-  <meta name="description" content="Explore Indo Thai Global's full range of solar dryers and food processing equipment."/>
+  <title>Contact — Indo Thai Global</title>
   <link rel="icon" href="assets/logo.png" type="image/png"/>
   <link rel="stylesheet" href="css/global.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
-  <link rel="stylesheet" href="css/products.css"/>
-  <link rel="stylesheet" href="css/home.css"/>
-  <link rel="stylesheet" href="css/products.css"/>
 </head>
 <body>
 
- <!-- ░░ STEP 2 — NAVBAR ░░ -->
+<!-- ░░ STEP 2 — NAVBAR ░░ -->
 <nav class="nav" id="nav">
   <div class="nav-accent" aria-hidden="true"></div>
   <div class="nav-progress" id="navProgress" aria-hidden="true"></div>
@@ -101,127 +97,274 @@
     <a href="quote.html" class="drawer-cta">Get a Quote →</a>
   </div>
 </div>
-  
+
+
+<style>
+  p { text-align: justify; }
+  .page-hero {
+    background: linear-gradient(135deg, #e8f4e8 0%, #eaf7f1 100%);
+    padding: clamp(5rem,9vw,7rem) 0 clamp(3rem,5vw,4rem);
+    position: relative; overflow: hidden;
+  }
+  .page-hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 55% at 80% 40%, rgba(34,120,80,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 1; }
+  .page-hero-label {
+    font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.22em;
+    text-transform: uppercase; color: #5a7a6a; margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .page-hero-label::before { content: ''; display: block; width: 22px; height: 1px; background:#5a7a6a; opacity: 0.5; }
+  .page-hero-title {
+    font-family: var(--font-serif); font-size: clamp(2.4rem,5vw,4rem);
+    font-weight: 600; color: #1e3a28; line-height: 1.08; margin-bottom: 1rem;
+  }
+  .page-hero-title em {
+    font-style: italic;
+    background: linear-gradient(108deg, #2a8a5a 0%, #4fc88a 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .page-hero-sub { font-size: 1.1rem; color: #3d5a48; max-width: 620px; line-height: 1.75; }
+ 
+  .loc-body { padding: clamp(4rem,7vw,6rem) 0; background: var(--off-white); }
+  .loc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: start;
+  }
+ 
+  /* info card — green for factory */
+  .loc-info-card {
+    background: linear-gradient(135deg, #2a7a50 0%, #3da86e 100%);
+    border-radius: var(--r-lg);
+    padding: clamp(2rem,4vw,2.8rem);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .loc-info-title {
+    font-family: var(--font-serif);
+    font-size: 1.7rem; font-weight: 600; color: #fff; margin-bottom: 0.4rem;
+  }
+  .loc-info-sub {
+    font-size: 0.84rem; color: rgba(255,255,255,0.65); margin-bottom: 2rem; line-height: 1.6;
+  }
+  .ci-rule { width: 36px; height: 2px; background: linear-gradient(90deg, #ffd700, #ff9a3c); border-radius: 2px; margin-bottom: 2rem; }
+  .ci-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-bottom: 1.4rem; padding-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .ci-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .ci-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .ci-label {
+    font-family: var(--font-mono); font-size: 0.55rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); margin-bottom: 2px;
+  }
+  .ci-value {
+    font-size: 0.9rem; font-weight: 500; color: #ffffff; line-height: 1.5;
+  }
+  .ci-value a { color: #fff; text-decoration: underline; }
+ 
+  /* map */
+  .map-wrap {
+    background: var(--white);
+    border-radius: var(--r-lg);
+    padding: 1.8rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+  .map-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1.2rem;
+  }
+  .map-frame { width: 100%; height: 320px; border: 0; border-radius: var(--r-md); display: block; }
+ 
+  /* about strip */
+  .loc-about {
+    margin-top: 3rem;
+    background: var(--white);
+    border-radius: var(--r-lg);
+    padding: clamp(2rem,4vw,3rem);
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .loc-about-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem; font-weight: 600; color: var(--text-dark); margin-bottom: 1rem;
+  }
+  .loc-about p { color: var(--text-mid); line-height: 1.8; margin-bottom: 0.8rem; }
+  .loc-about p:last-child { margin-bottom: 0; }
+ 
+  /* facility highlights */
+  .facility-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.4rem 0; }
+  .facility-card {
+    background: #f6fdf9; border: 1px solid #d0ead8;
+    border-radius: 10px; padding: 1rem 1.2rem;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .facility-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+  .facility-name { font-weight: 700; font-size: 0.85rem; color: #1e3a28; margin-bottom: 2px; }
+  .facility-desc { font-size: 0.78rem; color: #4a6a54; line-height: 1.4; }
+ 
+  /* hours */
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  .hours-table tr { border-bottom: 1px solid var(--border); }
+  .hours-table tr:last-child { border-bottom: none; }
+  .hours-table td { padding: 0.55rem 0; font-size: 0.9rem; color: var(--text-mid); }
+  .hours-table td:first-child { font-weight: 600; color: var(--text-dark); width: 44%; }
+  .badge-open { background: #dcfce7; color: #166534; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.05em; }
+  .badge-closed { background: #fee2e2; color: #991b1b; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: 0.05em; }
+ 
+  @media (max-width: 800px) {
+    .loc-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .facility-grid { grid-template-columns: 1fr; }
+  }
+</style>
+ 
 <main class="page-body">
-
-  <!-- ░░ HERO: Breeze background, no 3D ░░ -->
-  <section class="products-hero" aria-label="Products Hero">
-    <div class="hero-waves" aria-hidden="true">
-      <svg class="wave1" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,80 C180,160 360,0 540,80 C720,160 900,0 1080,80 C1260,160 1440,0 1440,80 L1440,200 L0,200 Z" fill="rgba(126,207,150,0.6)"/>
-        <path d="M720,90 C900,160 1080,0 1260,90 C1440,160 1620,0 1800,90 L1800,200 L720,200 Z" fill="rgba(100,190,130,0.5)"/>
-      </svg>
-      <svg class="wave2" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,100 C240,30 480,170 720,100 C960,30 1200,170 1440,100 L1440,200 L0,200 Z" fill="rgba(168,223,247,0.45)"/>
-        <path d="M720,110 C960,40 1200,180 1440,110 L1440,200 L720,200 Z" fill="rgba(140,210,240,0.3)"/>
-      </svg>
-      <svg class="wave3" viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,60 C360,140 720,0 1080,60 C1440,140 1800,0 1800,60 L1800,200 L0,200 Z" fill="rgba(184,232,192,0.38)"/>
-      </svg>
+ 
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div class="page-hero-label">Locations</div>
+      <h1 class="page-hero-title">Indo Thai Global Unit-1</h1>
+      <p class="page-hero-sub">Our main manufacturing facility in Ludhiana — where every solar dryer and food processing machine is built with precision.</p>
     </div>
-
-    <div class="hero-pollen" aria-hidden="true" id="heroPollen"></div>
-
-    <div class="hero-content-wrap">
-  <div class="hero-eyebrow reveal-up">Indo Thai Global</div>
-  <h1 class="hero-title reveal-up">Our Products</h1>
-  <p class="hero-sub reveal-up">Solar-powered drying systems built for agriculture, food processing and herbal industries — engineered in India.</p>
-</div>
   </section>
-
-  <!-- ░░ PRODUCTS LISTING ░░ -->
-  <section class="products-listing" id="products">
+ 
+  <section class="loc-body">
     <div class="container">
-
-        <<div class="listing-header">
-      <div class="listing-eyebrow reveal-up">Our Range</div>
-      <h2 class="listing-title reveal-up">Explore Our <em>Solutions</em></h2>
-      <p class="listing-sub reveal-up">Click on any product below to see full specifications, capacity models and enquire directly.</p>
-    </div>
-
-      <div class="prod-cards-area">
-
-        <!-- SOLAR DRYER — BIG CARD -->
-        <a href="solardryer.html" class="big-prod-card" id="solarDryerCard" aria-label="View Solar Dryer details">
-
-          <div class="bpc-img-side">
-            <img src="assets/products/solar-dryer.png" alt="Solar Dryer by Indo Thai Global"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
-            <div class="bpc-img-ph" style="display:none">
-              ☀️<span>Solar Dryer</span>
-            </div>
-            <div class="bpc-img-overlay">
-              <span class="bpc-ov-cta">View Full Details →</span>
-            </div>
-          </div>
-
-          <div class="bpc-info">
+      <div class="loc-grid">
+ 
+        <div class="loc-info-card">
+          <h2 class="loc-info-title">Factory / Unit-1</h2>
+          <p class="loc-info-sub">Primary manufacturing &amp; production unit.</p>
+          <div class="ci-rule"></div>
+ 
+          <div class="ci-item">
+            <div class="ci-icon">🏭</div>
             <div>
-              <div class="bpc-badge">Solar Technology</div>
-              <div style="height: 0.9rem;"></div>
-              <div class="bpc-name">Solar Dryer</div>
-              <div style="height: 0.5rem;"></div>
-              <div class="bpc-tagline">Advanced Solar &amp; Hybrid Drying Systems — 5 kg to 500 kg capacity, built for agriculture, food &amp; pharma.</div>
-              <div style="height: 0.8rem;"></div>
-              <div class="bpc-rule"></div>
-              <div style="height: 1rem;"></div>
-            </div>
-
-            <div class="bpc-specs">
-              <div class="bpc-spec"><span class="bpc-spec-k">Models:</span> ITG-SD5 · SD25 · SD50 · SD100 · SD250 · SD500</div>
-              <div class="bpc-spec"><span class="bpc-spec-k">Capacity:</span> 5 kg to 500 kg</div>
-              <div class="bpc-spec"><span class="bpc-spec-k">Temperature:</span> 45°C – 90°C (model dependent)</div>
-              <div class="bpc-spec"><span class="bpc-spec-k">Material:</span> SS 304/316 · Food-grade stainless steel</div>
-              <div class="bpc-spec"><span class="bpc-spec-k">Energy:</span> Solar + Electric/Biomass hybrid backup</div>
-            </div>
-
-            <div class="bpc-footer">
-              <span class="bpc-cta">
-                View Details <span class="bpc-cta-arrow">→</span>
-              </span>
-              <span class="bpc-models-count">6 capacity models</span>
+              <div class="ci-label">Factory Address</div>
+              <div class="ci-value">B-30-1384, St. No. 9,<br>Opposite Suraj Dying, Moti Nagar,<br>Near Transport Nagar,<br>Ludhiana, Punjab 141010, India</div>
             </div>
           </div>
-
-        </a>
-        <div class="brochure-bar">
-          <a href="assets/docs/solar-dryer-brochure.pdf" target="_blank" rel="noopener" class="brochure-bar__btn brochure-bar__btn--view">
-            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-8a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-            View Brochure
-          </a>
-          <a href="assets/docs/solar-dryer-brochure.pdf" download class="brochure-bar__btn brochure-bar__btn--dl">
-            <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18v10.17l-3.59-3.58L7 10l5 5 5-5-1.41-1.41L13 12.17V2h-1z"/></svg>
-            Download PDF
-          </a>
+ 
+          <div class="ci-item">
+            <div class="ci-icon">📞</div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <div class="ci-value">+91 76579-44044</div>
+            </div>
+          </div>
+ 
+          <div class="ci-item">
+            <div class="ci-icon">✉️</div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value"><a href="mailto:info@indothaiglobal.com">info@indothaiglobal.com</a></div>
+            </div>
+          </div>
+ 
+          <div class="ci-item">
+            <div class="ci-icon">🕐</div>
+            <div>
+              <div class="ci-label">Factory Hours</div>
+              <div class="ci-value">Mon – Sat: 8:00 AM – 6:00 PM<br>Sunday: Closed</div>
+            </div>
+          </div>
+ 
+          <div class="ci-item">
+            <div class="ci-icon">🏢</div>
+            <div>
+              <div class="ci-label">Head Office</div>
+              <div class="ci-value"><a href="ludhiana.html">Indo Thai Global Ludhiana (HQ) →</a></div>
+            </div>
+          </div>
         </div>
-        <!-- Coming soon pills -->
-        <div class="coming-soon-row" aria-hidden="true">
-          <span class="cs-pill"><span class="cs-pill-dot"></span>Vegetable Slicer — Coming Soon</span>
-          <span class="cs-pill"><span class="cs-pill-dot"></span>Pulverizer — Coming Soon</span>
-          <span class="cs-pill"><span class="cs-pill-dot"></span>More Products Launching</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░ CTA STRIP ░░ -->
-  <section class="cta-strip">
-    <div class="container">
-      <div class="cta-strip-inner">
+ 
         <div>
-          <p class="cta-strip-label">Ready to get started?</p>
-          <h2 class="cta-strip-title">Let's find the right product for you</h2>
+          <div class="map-wrap">
+            <h3 class="map-title">📍 Find the Factory</h3>
+            <iframe class="map-frame"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.867!2d75.8270!3d30.8920!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a838000000001%3A0x1!2sMoti+Nagar%2C+Ludhiana%2C+Punjab+141010!5e0!3m2!1sen!2sin!4v1775147196750!5m2!1sen!2sin"
+              allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Indo Thai Global Unit-1 Factory Location">
+            </iframe>
+          </div>
+ 
+          <div class="loc-about">
+            <h3 class="loc-about-title">About This Facility</h3>
+            <p>Indo Thai Global Unit-1 is our primary manufacturing plant, located in Moti Nagar, Ludhiana — an established industrial zone conveniently accessible from Transport Nagar. This is where all our solar dryers, tunnel dryers, tray dryers, and food processing equipment are designed, fabricated, tested, and dispatched.</p>
+            <p>The facility combines modern fabrication technology with skilled craftsmanship, ensuring each machine meets our quality benchmarks before delivery. Clients are welcome to schedule factory visits to see the production process firsthand and inspect machinery before purchase.</p>
+ 
+            <h4 style="margin-top:1.6rem; margin-bottom:1rem; font-size:1rem; color:var(--text-dark);">Facility Highlights</h4>
+            <div class="facility-grid">
+              <div class="facility-card">
+                <div class="facility-icon">⚙️</div>
+                <div>
+                  <div class="facility-name">Fabrication Shop</div>
+                  <div class="facility-desc">Precision cutting, welding &amp; metal forming for dryer frames and enclosures.</div>
+                </div>
+              </div>
+              <div class="facility-card">
+                <div class="facility-icon">🔆</div>
+                <div>
+                  <div class="facility-name">Solar Panel Assembly</div>
+                  <div class="facility-desc">Polycarbonate &amp; solar panel integration for optimal thermal efficiency.</div>
+                </div>
+              </div>
+              <div class="facility-card">
+                <div class="facility-icon">🧪</div>
+                <div>
+                  <div class="facility-name">Quality Testing</div>
+                  <div class="facility-desc">In-house drying performance and safety checks before dispatch.</div>
+                </div>
+              </div>
+              <div class="facility-card">
+                <div class="facility-icon">📦</div>
+                <div>
+                  <div class="facility-name">Dispatch &amp; Logistics</div>
+                  <div class="facility-desc">Nationwide and export shipping coordinated from the factory.</div>
+                </div>
+              </div>
+            </div>
+ 
+            <h4 style="margin-top:1.6rem; margin-bottom:0.5rem; font-size:1rem; color:var(--text-dark);">Factory Hours</h4>
+            <table class="hours-table">
+              <tr><td>Monday – Saturday</td><td>8:00 AM – 6:00 PM <span class="badge-open">Open</span></td></tr>
+              <tr><td>Sunday</td><td>Closed <span class="badge-closed">Closed</span></td></tr>
+            </table>
+ 
+            <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+              <a href="https://wa.me/917657944044?text=Hello%20Indo%20Thai%20Global%2C%20I%20would%20like%20to%20schedule%20a%20factory%20visit."
+                 target="_blank" rel="noopener"
+                 style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:0.7rem 1.4rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;">
+                💬 Schedule a Visit
+              </a>
+              <a href="quote.html"
+                 style="display:inline-flex;align-items:center;gap:8px;background:#2a7a50;color:#fff;padding:0.7rem 1.4rem;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;">
+                📬 Contact Page →
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="cta-strip-btns">
-          <a href="quote.html"   class="btn btn-dark">Request a Quote →</a>
-          <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
-        </div>
+ 
       </div>
     </div>
   </section>
-
+ 
 </main>
+
 
 <!-- ░░ FOOTER ░░ -->
 <footer class="site-footer">
@@ -250,10 +393,10 @@
 
     <div class="footer-col">
       <h4 class="footer-title">Contact</h4>
-      <div class="footer-contact-item">&#128222; +91 76579-44044, +91 90710-69000</div><div class="footer-contact-item">
+      <div class="footer-contact-item">&#128222; +91 76579-44044</div><div class="footer-contact-item">
   &#9993; <a href="mailto:indothaiglobal20@gmail.com">info@indothaiglobal.com</a>
 </div>
-   <div class="footer-contact-item">&#128205; 4th Floor, Kunal Tower, The Mall Rd, Ludhiana, Punjab 141001, India</div>
+   <div class="footer-contact-item">&#128205; B-30-1384, St. No. 9,<br>Opposite Suraj Dying, Moti Nagar,<br>Near Transport Nagar,<br>Ludhiana, Punjab 141010, India</div>
     </div>
 
   </div>
@@ -586,7 +729,6 @@
 </script>
 <script src="js/navbar.js"></script>
 <script src="js/home.js"></script>
-<script src="js/products.js"></script>
 <script src="js/global.js"></script>
 
 <!-- ── Floating Social Dock ── -->
@@ -760,24 +902,6 @@
     </svg>
   </a>
 </div>
-
-<!-- Scroll reveal for big card -->
-<script>
-(function(){
-  const card = document.getElementById('solarDryerCard');
-  if (!card) return;
-  if ('IntersectionObserver' in window) {
-    const obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); obs.unobserve(entry.target); }
-      });
-    }, { threshold: 0.1 });
-    obs.observe(card);
-  } else {
-    card.classList.add('is-visible');
-  }
-})();
-</script>
 
 </body>
 </html>

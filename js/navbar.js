@@ -368,3 +368,23 @@
   buildList();
 
 })();
+
+// Locations dropdown toggle (mobile drawer)
+document.querySelectorAll('.drawer-dropdown-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.drawer-has-dropdown').classList.toggle('open');
+  });
+});
+
+// Locations dropdown toggle (desktop, click-based fallback)
+document.querySelectorAll('.nav-dropdown-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    btn.closest('.nav-has-dropdown').classList.toggle('open');
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.nav-has-dropdown.open')
+    .forEach(el => el.classList.remove('open'));
+});
