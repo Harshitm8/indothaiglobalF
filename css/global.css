@@ -208,7 +208,7 @@ button { font: inherit; cursor: pointer; }
     radial-gradient(ellipse at 20% 50%, rgba(90,200,232,0.04) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(42,154,191,0.05) 0%, transparent 55%);
   color: rgba(255,255,255,0.70);
-  padding: 16px 0 0;
+  padding: clamp(2rem, 4vw, 3rem) 0 0;
   margin-top: 0;
   position: relative;
   overflow: hidden;
@@ -245,7 +245,8 @@ button { font: inherit; cursor: pointer; }
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 14px;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
 }
 
 .footer-brand {
@@ -360,9 +361,13 @@ button { font: inherit; cursor: pointer; }
   opacity: 0.95;
 }
 
-@media (max-width: 700px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
-  .footer-bottom-inner { flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+}
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+  .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .footer-dev-text, .footer-dev-link { text-align: left; }
 }
 
 /* ── Scroll Reveal ── */
